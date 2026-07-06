@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Teczo Admin | Lead Operations Dashboard</title>
+
+  <meta
+    name="description"
+    content="Teczo Softwares real-time admin dashboard for managing contact form and chatbot leads."
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="/src/styles/admin.css" />
+</head>
+
+<body>
+
+  <div class="admin-bg" aria-hidden="true"></div>
+
+  <!-- LOGIN SCREEN -->
+  <main class="login-screen" id="loginPanel">
+
+    <section class="login-card">
+
+      <a href="/" class="back-link">
+        ← Back to website
+      </a>
+
+      <div class="brand-line">
+        <span class="brand-dot"></span>
+        <span>Teczo Admin</span>
+      </div>
+
+      <h1>Lead Operations</h1>
+
+      <p class="login-subtitle">
+        Login to manage website contact form and chatbot enquiries in real time.
+      </p>
+
+      <div class="demo-box" id="demoBox">
+        <strong>Local demo login</strong>
+        <span>Email: admin@teczo.demo</span>
+        <span>Password: Teczo@123</span>
+      </div>
+
+      <form class="login-form" id="loginForm">
+
+        <label>
+          <span>Email address</span>
+          <input
+            type="email"
+            id="adminEmail"
+            placeholder="admin@teczo.demo"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Password</span>
+          <input
+            type="password"
+            id="adminPassword"
+            placeholder="Teczo@123"
+            autocomplete="current-password"
+            required
+          />
+        </label>
+
+        <button type="submit" class="primary-btn">
+          Login Dashboard
+        </button>
+
+        <p class="notice" id="loginNotice" role="status"></p>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- DASHBOARD -->
+  <main class="admin-shell hidden" id="dashboard">
+
+    <header class="admin-topbar">
+
+      <div class="topbar-left">
+
+        <a href="/" class="back-link top-back-link">
+          ← Back to website
+        </a>
+
+        <span class="mode-pill" id="modePill">
+          Checking realtime mode...
+        </span>
+
+      </div>
+
+      <button class="logout-btn" id="logoutBtn">
+        Logout
+      </button>
+
+    </header>
+
+    <section class="dashboard-hero">
+
+      <div>
+        <p class="eyebrow">Admin Dashboard</p>
+
+        <h1>Lead Operations</h1>
+
+        <p>
+          Search, filter, prioritize, add notes, export CSV and act on new
+          enquiries in real time.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="stats-grid">
+
+      <article class="stat-card">
+        <span id="totalLeads">0</span>
+        <p>Total leads</p>
+      </article>
+
+      <article class="stat-card">
+        <span id="newLeads">0</span>
+        <p>New</p>
+      </article>
+
+      <article class="stat-card">
+        <span id="qualifiedLeads">0</span>
+        <p>Qualified pipeline</p>
+      </article>
+
+      <article class="stat-card">
+        <span id="urgentLeads">0</span>
+        <p>Urgent</p>
+      </article>
+
+      <article class="stat-card">
+        <span id="wonRate">0%</span>
+        <p>Won rate</p>
+      </article>
+
+    </section>
+
+    <section class="table-card">
+
+      <div class="table-header">
+
+        <div>
+          <h2>Recent submissions</h2>
+
+          <p>
+            Realtime dashboard for contact form and chatbot leads.
+          </p>
+        </div>
+
+        <button class="secondary-btn" id="refreshBtn">
+          Refresh
+        </button>
+
+      </div>
+
+      <div class="admin-tools">
+
+        <input
+          type="text"
+          id="leadSearchInput"
+          placeholder="Search name, email, phone, company, service, message or notes..."
+        />
+
+        <select id="statusFilter">
+          <option value="all">All status</option>
+          <option value="new">New</option>
+          <option value="contacted">Contacted</option>
+          <option value="qualified">Qualified</option>
+          <option value="closed">Closed</option>
+        </select>
+
+        <select id="priorityFilter">
+          <option value="all">All priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="urgent">Urgent</option>
+        </select>
+
+        <select id="sourceFilter">
+          <option value="all">All sources</option>
+          <option value="website-form">Website form</option>
+          <option value="chatbot">Chatbot</option>
+          <option value="manual">Manual</option>
+        </select>
+
+        <button class="secondary-btn export-btn" id="exportCsvBtn">
+          Export CSV
+        </button>
+
+      </div>
+
+      <div class="empty-state" id="emptyState">
+        <h3>No leads found</h3>
+        <p>Try changing filters or submit a new enquiry from the website.</p>
+      </div>
+
+      <div class="table-scroll" id="tableWrap">
+
+        <table class="leads-table">
+
+          <thead>
+            <tr>
+              <th>Lead</th>
+              <th>Contact</th>
+              <th>Service</th>
+              <th>Message</th>
+              <th>Status</th>
+              <th>Priority</th>
+              <th>Source</th>
+              <th>Admin Notes</th>
+              <th>Created</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="leadsTable"></tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script type="module" src="/src/admin.js"></script>
+
+</body>
+</html>
