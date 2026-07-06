@@ -1,0 +1,109 @@
+.section {
+  background-color: #0a0a0a;
+  padding: 5rem 4rem;
+  color: white;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Image Showcase */
+.imageShowcase {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.imageWrapper {
+  position: relative;
+  flex: 1;
+  aspect-ratio: 16 / 10;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.imageWrapper:hover {
+  transform: scale(1.02);
+}
+
+/* Spec Cards Row */
+.specsRow {
+  display: flex;
+  align-items: center;
+}
+
+.specCard {
+  flex: 1;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.specCardLast {
+  border-right: none;
+}
+
+.specValue {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  font-family: var(--font-heading);
+  color: white;
+  line-height: 1.2;
+}
+
+.specSuffix {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+.specDetail {
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: 0.25rem;
+  font-weight: 600;
+}
+
+.specLabel {
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 1.5rem;
+  }
+
+  .imageShowcase {
+    flex-direction: column;
+  }
+
+  .specsRow {
+    flex-wrap: wrap;
+  }
+
+  .specCard {
+    flex: 1 1 50%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .specCard:nth-child(odd) {
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .specCard:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .specCardLast {
+    border-right: none;
+  }
+}

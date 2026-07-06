@@ -1,0 +1,92 @@
+.section {
+  position: relative;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding: 6rem 4rem;
+  background-image: url('/images/community-car.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75));
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+/* Heading */
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+/* Description */
+.description {
+  font-size: 0.85rem;
+  color: #ccc;
+  max-width: 500px;
+  margin: 1rem auto 2rem;
+  line-height: 1.6;
+}
+
+/* CTA Button */
+.ctaButton {
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: transparent;
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: white;
+  color: black;
+}
+
+/* ES6 Watermark */
+.watermark {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  font-size: 4rem;
+  font-weight: 900;
+  opacity: 0.15;
+  color: white;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem;
+    min-height: 350px;
+  }
+
+  .watermark {
+    font-size: 2.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+  }
+}

@@ -1,0 +1,117 @@
+.section {
+  padding: 6rem 4rem 3rem;
+  background: var(--bg-primary, #0a0a0a);
+}
+
+/* ── Top two-column row ── */
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3rem;
+  max-width: 1440px;
+  margin: 0 auto 4rem;
+}
+
+.heading {
+  flex: 1;
+  font-family: var(--font-heading, 'Outfit', sans-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0;
+}
+
+.descriptionCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.description {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #a0a0a0;
+  margin: 0;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #111111;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  text-decoration: none;
+  width: fit-content;
+  font-family: inherit;
+}
+
+.ctaButton:hover {
+  background: #222222;
+}
+
+/* ── Category filter tabs ── */
+.tabsContainer {
+  max-width: 1440px;
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tab {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding-bottom: 0.75rem;
+  cursor: pointer;
+  color: #666666;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: inherit;
+}
+
+.tabActive {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .topRow {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .tabs {
+    gap: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
