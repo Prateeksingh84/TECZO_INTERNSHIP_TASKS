@@ -1,0 +1,86 @@
+﻿[
+    {
+        "name":  "blog_1.jpg",
+        "path":  "images/blog_1.jpg",
+        "type":  "blog",
+        "title":  "Blog 1",
+        "size":  970096
+    },
+    {
+        "name":  "blog_2.jpg",
+        "path":  "images/blog_2.jpg",
+        "type":  "blog",
+        "title":  "Blog 2",
+        "size":  835024
+    },
+    {
+        "name":  "blog_3.jpg",
+        "path":  "images/blog_3.jpg",
+        "type":  "blog",
+        "title":  "Blog 3",
+        "size":  997939
+    },
+    {
+        "name":  "diving_activity_1.jpg",
+        "path":  "images/diving_activity_1.jpg",
+        "type":  "activity",
+        "title":  "Diving Activity 1",
+        "size":  1105076
+    },
+    {
+        "name":  "diving_activity_2.jpg",
+        "path":  "images/diving_activity_2.jpg",
+        "type":  "activity",
+        "title":  "Diving Activity 2",
+        "size":  978463
+    },
+    {
+        "name":  "diving_activity_3.jpg",
+        "path":  "images/diving_activity_3.jpg",
+        "type":  "activity",
+        "title":  "Diving Activity 3",
+        "size":  811677
+    },
+    {
+        "name":  "hero_background.jpg",
+        "path":  "images/hero_background.jpg",
+        "type":  "hero",
+        "title":  "Hero Background",
+        "size":  1017913
+    },
+    {
+        "name":  "hero_card.jpg",
+        "path":  "images/hero_card.jpg",
+        "type":  "hero",
+        "title":  "Hero Card",
+        "size":  1145485
+    },
+    {
+        "name":  "moment_1.jpg",
+        "path":  "images/moment_1.jpg",
+        "type":  "moment",
+        "title":  "Moment 1",
+        "size":  1081960
+    },
+    {
+        "name":  "moment_2.jpg",
+        "path":  "images/moment_2.jpg",
+        "type":  "moment",
+        "title":  "Moment 2",
+        "size":  692248
+    },
+    {
+        "name":  "moment_3.jpg",
+        "path":  "images/moment_3.jpg",
+        "type":  "moment",
+        "title":  "Moment 3",
+        "size":  921450
+    },
+    {
+        "name":  "newsletter_bg.jpg",
+        "path":  "images/newsletter_bg.jpg",
+        "type":  "newsletter",
+        "title":  "Newsletter Bg",
+        "size":  872419
+    }
+]
