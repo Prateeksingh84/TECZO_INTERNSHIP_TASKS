@@ -1,0 +1,9 @@
+{
+  "name": "Teczo Softwares",
+  "short_name": "Teczo",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050816",
+  "theme_color": "#7C5CFF",
+  "description": "AI-ready software, automation and SaaS product engineering."
+}

@@ -1,0 +1,7 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title">
+  <title id="title">Teczo Softwares favicon</title>
+  <rect width="64" height="64" rx="18" fill="#050816"/>
+  <path d="M16 18H48" stroke="#66E3FF" stroke-width="6" stroke-linecap="round"/>
+  <path d="M32 18V48" stroke="#7C5CFF" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="32" cy="48" r="6" fill="#2CF6B3"/>
+</svg>
