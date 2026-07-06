@@ -1,0 +1,30 @@
+{
+  "name": "teczo-vite-realtime-website",
+  "version": "1.0.0",
+  "description": "Professional real-time Teczo demo website using Vite, JavaScript, Supabase and PostgreSQL.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview",
+    "clean": "rmdir /s /q dist"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  },
+  "devDependencies": {
+    "vite": "^5.4.8"
+  },
+  "keywords": [
+    "vite",
+    "supabase",
+    "realtime",
+    "javascript",
+    "html",
+    "css",
+    "admin-dashboard"
+  ],
+  "author": "Prateek Singh",
+  "license": "MIT"
+}
