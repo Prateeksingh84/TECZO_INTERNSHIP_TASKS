@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Teczo Admin | Real-Time Lead Dashboard</title>
+
+  <meta
+    name="description"
+    content="Real-time admin dashboard for Teczo demo website leads."
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <div class="admin-bg" aria-hidden="true"></div>
+
+  <main class="admin-shell">
+
+    <!-- LOGIN PANEL -->
+    <section class="login-panel" id="loginPanel">
+
+      <a href="index.html" class="back-link">
+        ← Back to website
+      </a>
+
+      <div class="brand-line">
+        <span class="brand-dot"></span>
+        <span>Teczo Admin</span>
+      </div>
+
+      <h1>Real-time lead dashboard</h1>
+
+      <p class="muted">
+        Login to watch contact form submissions appear live.
+      </p>
+
+      <div class="demo-box" id="demoBox">
+        <strong>Local demo login</strong>
+        <span>Email: admin@teczo.demo</span>
+        <span>Password: Teczo@123</span>
+      </div>
+
+      <form id="loginForm" class="login-form">
+
+        <label>
+          <span>Email</span>
+          <input
+            type="email"
+            id="adminEmail"
+            autocomplete="email"
+            placeholder="admin@teczo.demo"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Password</span>
+          <input
+            type="password"
+            id="adminPassword"
+            autocomplete="current-password"
+            placeholder="Teczo@123"
+            required
+          />
+        </label>
+
+        <button type="submit" class="btn-main">
+          Login
+        </button>
+
+        <p class="notice" id="loginNotice" role="status"></p>
+
+      </form>
+
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="dashboard hidden" id="dashboard">
+
+      <div class="dashboard-top">
+
+        <div>
+
+          <a href="index.html" class="back-link">
+            ← Back to website
+          </a>
+
+          <p class="mode-pill" id="modePill">
+            Checking realtime mode...
+          </p>
+
+          <h1>Live Website Leads</h1>
+
+          <p class="muted">
+            Open <strong>index.html</strong> in another tab, submit the contact
+            form, and this dashboard updates instantly.
+          </p>
+
+        </div>
+
+        <button class="btn-outline" id="logoutBtn">
+          Logout
+        </button>
+
+      </div>
+
+      <!-- STATS -->
+      <div class="stats-grid">
+
+        <article class="stat-card">
+          <span id="totalLeads">0</span>
+          <p>Total Leads</p>
+        </article>
+
+        <article class="stat-card">
+          <span id="newLeads">0</span>
+          <p>New</p>
+        </article>
+
+        <article class="stat-card">
+          <span id="contactedLeads">0</span>
+          <p>Contacted</p>
+        </article>
+
+        <article class="stat-card">
+          <span id="qualifiedLeads">0</span>
+          <p>Qualified</p>
+        </article>
+
+      </div>
+
+      <!-- LEADS TABLE -->
+      <div class="table-card">
+
+        <div class="table-header">
+
+          <div>
+            <h2>Recent Submissions</h2>
+
+            <p class="muted small">
+              Search, filter, export, update priority, add notes, and delete leads.
+            </p>
+          </div>
+
+          <button class="btn-outline small-btn" id="refreshBtn">
+            Refresh
+          </button>
+
+        </div>
+
+        <!-- ADMIN TOOLS -->
+        <div class="admin-tools">
+
+          <input
+            type="text"
+            id="leadSearchInput"
+            placeholder="Search by name, email, company, message, status, priority or notes..."
+          />
+
+          <select id="statusFilter">
+            <option value="all">All Status</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="qualified">Qualified</option>
+            <option value="closed">Closed</option>
+          </select>
+
+          <select id="priorityFilter">
+            <option value="all">All Priority</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="urgent">Urgent</option>
+          </select>
+
+          <button class="btn-outline small-btn" id="exportCsvBtn">
+            Export CSV
+          </button>
+
+        </div>
+
+        <div class="empty-state" id="emptyState">
+          <h3>No leads found</h3>
+          <p>Submit the website contact form or adjust search/filter.</p>
+        </div>
+
+        <div class="table-wrap" id="tableWrap">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Company</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Admin Notes</th>
+                <th>Received</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="leadsTable"></tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script type="module" src="/src/admin.js"></script>
+
+</body>
+</html>
