@@ -1,51 +1,52 @@
-# README Markdown Files for Six Internship Projects
+<div align="center">
 
-This file contains the full Markdown README content for all six projects.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:7F77DD,100:1D9E75&height=200&section=header&text=Internship%20Projects&fontSize=48&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Six%20full-stack%20builds%20%E2%80%94%20frontend,%20backend,%20and%20realtime&descAlignY=55&descSize=18" width="100%" />
 
+<img src="https://readme-typing-svg.demolab.com/?font=Fira+Code&size=22&pause=1000&color=1D9E75&center=true&vCenter=true&width=600&lines=Next.js+%2B+TypeScript+e-commerce;Vite+%2B+Supabase+realtime+websites;Static+sites+with+auth+%26+SQL+schemas;Admin+dashboards+%2B+customer+chatbots" alt="Typing SVG" />
+
+</div>
+
+<br/>
+
+## Table of contents
+
+- [Natura Essence Skincare Platform](#-natura-essence-skincare-platform)
+- [DivingClub Website](#-divingclub-website)
+- [NIO EV Website](#-nio-ev-website)
+- [TECZO Website 3](#-teczo-website-3)
+- [TECZO Vite Realtime Website 1](#-teczo-vite-realtime-website-1)
+- [TECZO Website Demo 2](#-teczo-website-demo-2)
+
+<br/>
 
 ---
 
+## 🧴 Natura Essence Skincare Platform
 
-## File: `natura-essence-skincare-platform/README.md`
+<div align="center">
 
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
-```markdown
+</div>
 
-# Natura Essence Skincare Platform
+A premium skincare e-commerce experience with a dynamic product catalog, cart drawer, product detail modal, newsletter capture, and a local JSON database for demo persistence.
 
-Natura Essence Skincare Platform is a modern skincare e-commerce experience built with Next.js and TypeScript. The project focuses on a premium product landing page, dynamic product catalog, cart functionality, product detail modal, newsletter capture, contact lead capture, and backend API-driven content.
-
-## Features
-
-- Premium skincare landing page UI
-- Dynamic product collection section
-- Product detail modal on card click
-- Add to cart functionality
-- Cart drawer with quantity update, remove, clear, and checkout demo
-- Newsletter subscription API
-- Contact lead capture API
-- Product and store content served from backend APIs
-- Local JSON database for demo persistence
-- Matched skincare product visual assets
+**Features**
+- Premium landing page UI with matched skincare product visuals
+- Product detail modal, add-to-cart, and a full cart drawer (quantity, remove, clear, checkout demo)
+- Newsletter subscription and contact lead capture APIs
+- Product and store content served from backend API routes
 - Responsive layout for desktop and mobile
 
-## Tech Stack
-
-- Next.js
-- React
-- TypeScript
-- CSS
-- Node.js API Routes
-- Local JSON file database
-
-## Project Structure
-
+**Project structure**
 ```txt
 natura-essence-skincare-platform/
 ├── data/
 │   └── natura-store.json
-├── public/
-│   └── assets/
+├── public/assets/
 ├── scripts/
 ├── src/
 │   ├── app/
@@ -53,191 +54,107 @@ natura-essence-skincare-platform/
 │   └── lib/
 ├── package.json
 ├── next.config.ts
-├── tsconfig.json
-└── README.md
+└── tsconfig.json
 ```
 
-## API Routes
-
+**API routes**
 ```txt
-GET    /api/store
-GET    /api/products
-GET    /api/products/[id]
-GET    /api/cart
-POST   /api/cart
-PATCH  /api/cart
-DELETE /api/cart
-POST   /api/newsletter
-POST   /api/contact
-GET    /api/admin/records
-GET    /api/asset/[kind]/[id]
+GET/POST/PATCH/DELETE  /api/cart
+GET   /api/store
+GET   /api/products
+GET   /api/products/[id]
+POST  /api/newsletter
+POST  /api/contact
+GET   /api/admin/records
+GET   /api/asset/[kind]/[id]
 ```
 
-## Run Locally
-
+**Run locally**
 ```powershell
 cd natura-essence-skincare-platform
 npm.cmd install
 npm.cmd run dev
 ```
+Open `http://localhost:3000`
 
-Open:
-
-```txt
-http://localhost:3000
-```
-
-## Environment Variables
-
-Create `.env.local` using `.env.example`.
-
+Create `.env.local` from `.env.example`:
 ```env
 NEXT_PUBLIC_APP_NAME="Natura Essence"
 ```
 
-## Purpose
-
-This project demonstrates a production-style e-commerce frontend with backend APIs, cart state management, product details, and clean UI/UX for a skincare brand.
-
-```
-
+<div align="right"><a href="#-table-of-contents">↑ back to top</a></div>
 
 ---
 
+## 🤿 DivingClub Website
 
-## File: `divingclub/README.md`
+<div align="center">
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-```markdown
+</div>
 
-# DivingClub Website
+A static frontend for a diving and adventure club, with image-rich sections, blog cards, Supabase-backed auth, and a realtime-ready structure.
 
-DivingClub is a static frontend website for a diving and adventure club. The project includes a landing page, image-based content sections, blog cards, authentication-related scripts, Supabase configuration, profile logic, realtime support files, and SQL schema support.
+**Features**
+- Adventure diving landing page and hero section
+- Activity cards, blog cards, newsletter, and image gallery
+- Auth, profile, and realtime JavaScript modules
+- Supabase configuration support and SQL schema
 
-## Features
-
-- Adventure diving landing page
-- Hero section with diving visuals
-- Activity cards
-- Blog cards
-- Newsletter section
-- Image gallery/moments section
-- Local dynamic content renderer
-- Supabase configuration support
-- Auth and profile JavaScript files
-- Realtime support scripts
-- SQL schema for backend setup
-
-## Tech Stack
-
-- HTML
-- CSS
-- JavaScript
-- Supabase
-- SQL
-
-## Project Structure
-
+**Project structure**
 ```txt
 divingclub/
 ├── images/
 ├── js/
-├── sql/
+│   ├── auth.js
+│   ├── profile.js
+│   ├── realtime.js
+│   └── supabase-config.js
+├── sql/schema.sql
 ├── index.html
 ├── styles.css
-├── script.js
-├── README.md
-└── folder_structure.txt
+└── script.js
 ```
 
-## Main Files
+**Run locally**
 
+Open `index.html` directly, or right-click → *Open with Live Server* in VS Code.
+
+**Supabase setup**
 ```txt
-index.html              Main website page
-styles.css              Website styling
-script.js               Main frontend interactions
-js/auth.js              Authentication logic
-js/profile.js           Profile handling
-js/realtime.js          Realtime integration
-js/supabase-config.js   Supabase client configuration
-sql/schema.sql          Database schema
+1. Create a Supabase project
+2. Run sql/schema.sql in the SQL Editor
+3. Add your URL and anon key to js/supabase-config.js
 ```
 
-## Run Locally
-
-Open directly in the browser:
-
-```txt
-index.html
-```
-
-Recommended with VS Code Live Server:
-
-```txt
-Right click index.html -> Open with Live Server
-```
-
-## Supabase Setup
-
-1. Create a Supabase project.
-2. Open SQL Editor.
-3. Run the schema from:
-
-```txt
-sql/schema.sql
-```
-
-4. Update Supabase URL and anon key inside:
-
-```txt
-js/supabase-config.js
-```
-
-## Purpose
-
-This project demonstrates a complete static club website with image-rich sections, dynamic rendering support, Supabase-ready scripts, and database schema integration.
-
-```
-
+<div align="right"><a href="#-table-of-contents">↑ back to top</a></div>
 
 ---
 
+## ⚡ NIO EV Website
 
-## File: `nio-ev-website/README.md`
+<div align="center">
 
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-```markdown
+</div>
 
-# NIO EV Website
+A modern electric vehicle brand website with a car showcase, tech and specs sections, and contact/newsletter flows backed by API routes.
 
-NIO EV Website is a modern electric vehicle website built with Next.js and TypeScript. It includes a premium EV landing page, product sections, contact/newsletter flows, reusable UI components, and a responsive design system.
+**Features**
+- Premium EV landing page and hero section
+- Car showcase, features grid, technology, and specs sections
+- Community, contact, and products pages
+- Newsletter and contact API routes with reusable, responsive UI components
 
-## Features
-
-- Premium EV landing page
-- Hero section for electric vehicle branding
-- Car showcase section
-- Features grid
-- Technology section
-- Specs detail section
-- Community section
-- Contact page
-- Products page
-- Newsletter and contact API routes
-- Responsive UI components
-- Supabase-ready configuration support
-
-## Tech Stack
-
-- Next.js
-- React
-- TypeScript
-- CSS Modules
-- Supabase
-- Node.js
-
-## Project Structure
-
+**Project structure**
 ```txt
 nio-ev-website/
 ├── public/
@@ -247,34 +164,16 @@ nio-ev-website/
 │   └── lib/
 ├── package.json
 ├── next.config.ts
-├── tsconfig.json
-├── eslint.config.mjs
-└── README.md
+└── eslint.config.mjs
 ```
 
-## Run Locally
-
+**Run locally**
 ```powershell
 cd nio-ev-website
 npm.cmd install
 npm.cmd run dev
 ```
-
-Open:
-
-```txt
-http://localhost:3000
-```
-
-## Build
-
-```powershell
-npm.cmd run build
-```
-
-## Environment Variables
-
-Create `.env.local` from `.env.example`.
+Open `http://localhost:3000` · Build with `npm.cmd run build`
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=""
@@ -282,58 +181,43 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=""
 NEXT_PUBLIC_APP_NAME="NIO EV Website"
 ```
 
-## Purpose
-
-This project demonstrates a professional electric vehicle brand website with reusable components, modern UI, responsive sections, and backend-ready contact/newsletter flows.
-
-```
-
+<div align="right"><a href="#-table-of-contents">↑ back to top</a></div>
 
 ---
 
+## 🤖 TECZO Website 3
 
-## File: `TECZO_WEBSITE-3/README.md`
+<div align="center">
 
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-```markdown
+</div>
 
-# TECZO Website 3
+A Vite-powered business site for a software development and automation company, with service pages, case studies, an admin dashboard, and a customer chatbot.
 
-TECZO Website 3 is a Vite-powered business website created for a software development and automation company. It includes service pages, case studies, location landing page, admin dashboard, customer chatbot, Supabase database schema, and realtime service integration.
+**Features**
+- Modern landing page plus privacy and terms pages
+- Service pages: AI automation, CRM workflow automation, custom software, e-commerce engineering, SaaS product development
+- Case studies page and a location-specific SEO page
+- Admin dashboard, customer chatbot script, and a realtime service layer
+- Supabase database schema and public SEO files
 
-## Features
-
-- Modern business landing page
-- Admin dashboard page
-- Privacy and terms pages
-- Service landing pages
-- Case studies page
-- Location-specific SEO page
-- Customer chatbot script
-- Realtime service layer
-- Supabase database schema
-- Public SEO files
-- Responsive styling
-- Environment configuration support
-
-## Tech Stack
-
-- Vite
-- HTML
-- CSS
-- JavaScript
-- Supabase
-- SQL
-
-## Project Structure
-
+**Project structure**
 ```txt
 TECZO_WEBSITE-3/
 ├── case-studies/
-├── database/
+├── database/supabase.sql
 ├── locations/
 ├── public/
 ├── services/
+│   ├── ai-automation/
+│   ├── crm-workflow-automation/
+│   ├── custom-software-development/
+│   ├── ecommerce-engineering/
+│   └── saas-product-development/
 ├── src/
 │   ├── services/
 │   ├── styles/
@@ -343,98 +227,49 @@ TECZO_WEBSITE-3/
 ├── admin.html
 ├── index.html
 ├── privacy.html
-├── terms.html
-├── package.json
-├── vite.config.js
-└── README.md
+└── terms.html
 ```
 
-## Service Pages
-
-```txt
-services/ai-automation/
-services/crm-workflow-automation/
-services/custom-software-development/
-services/ecommerce-engineering/
-services/saas-product-development/
-```
-
-## Run Locally
-
+**Run locally**
 ```powershell
 cd TECZO_WEBSITE-3
 npm.cmd install
 npm.cmd run dev
 ```
+Open `http://localhost:5173`
 
-Open:
+**Supabase setup:** run `database/supabase.sql` in the SQL Editor, then set variables from `.env.example`.
 
-```txt
-http://localhost:5173
-```
-
-## Supabase Setup
-
-Run the SQL schema from:
-
-```txt
-database/supabase.sql
-```
-
-Then update environment variables using `.env.example`.
-
-## Purpose
-
-This project demonstrates a production-style Vite business website with service pages, lead capture flow, chatbot logic, admin dashboard files, Supabase schema, and realtime service integration.
-
-```
-
+<div align="right"><a href="#-table-of-contents">↑ back to top</a></div>
 
 ---
 
+## 🔌 TECZO Vite Realtime Website 1
 
-## File: `teczo-vite-realtime-website-1/README.md`
+<div align="center">
 
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-```markdown
+</div>
 
-# TECZO Vite Realtime Website 1
+A lightweight Vite + Supabase realtime website focused on a clean landing page, admin management, and chatbot interaction.
 
-TECZO Vite Realtime Website 1 is a Vite + Supabase realtime website focused on business landing page functionality, admin management, chatbot interaction, and realtime backend integration.
+**Features**
+- Vite frontend setup with a clean landing page
+- Admin dashboard page and customer chatbot script
+- Realtime service integration and Supabase database schema
+- Public favicon asset and environment variable example
 
-## Features
-
-- Vite frontend setup
-- Landing page
-- Admin dashboard page
-- Customer chatbot script
-- Realtime service integration
-- Supabase database schema
-- Public favicon asset
-- Environment variable example
-- Clean project structure
-- Responsive styling
-
-## Tech Stack
-
-- Vite
-- HTML
-- CSS
-- JavaScript
-- Supabase
-- SQL
-
-## Project Structure
-
+**Project structure**
 ```txt
 teczo-vite-realtime-website-1/
-├── database/
-│   └── supabase.sql
-├── public/
-│   └── favicon.svg
+├── database/supabase.sql
+├── public/favicon.svg
 ├── src/
-│   ├── services/
-│   │   └── realtimeService.js
+│   ├── services/realtimeService.js
 │   ├── styles/
 │   │   ├── admin.css
 │   │   └── style.css
@@ -442,95 +277,54 @@ teczo-vite-realtime-website-1/
 │   ├── customerChatbot.js
 │   └── main.js
 ├── admin.html
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
+└── index.html
 ```
 
-## Run Locally
-
+**Run locally**
 ```powershell
 cd teczo-vite-realtime-website-1
 npm.cmd install
 npm.cmd run dev
 ```
-
-Open:
-
-```txt
-http://localhost:5173
-```
-
-## Environment Variables
-
-Create `.env` from `.env.example`.
+Open `http://localhost:5173`
 
 ```env
 VITE_SUPABASE_URL=""
 VITE_SUPABASE_ANON_KEY=""
 ```
 
-## Database Setup
+Then run `database/supabase.sql` in the Supabase SQL Editor.
 
-Open Supabase SQL Editor and run:
-
-```txt
-database/supabase.sql
-```
-
-## Purpose
-
-This project demonstrates a lightweight realtime company website with Supabase-backed services, chatbot support, admin dashboard scripts, and Vite-based development workflow.
-
-```
-
+<div align="right"><a href="#-table-of-contents">↑ back to top</a></div>
 
 ---
 
+## 🖥️ TECZO Website Demo 2
 
-## File: `TECZO-WEBSITE-DEMO-2/README.md`
+<div align="center">
 
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-```markdown
+</div>
 
-# TECZO Website Demo 2
+A compact Vite + Supabase demo website for a software services company, with a public landing page, admin page, and chatbot logic.
 
-TECZO Website Demo 2 is a compact Vite + Supabase demo website for a software services company. It includes a public landing page, admin page, chatbot logic, realtime service file, Supabase schema, and clean responsive styling.
+**Features**
+- Public landing page and admin dashboard page
+- Customer chatbot JavaScript and a realtime service layer
+- Supabase SQL schema and public favicon
+- Environment example file and clean folder structure
 
-## Features
-
-- Vite-based website
-- Public landing page
-- Admin dashboard page
-- Customer chatbot JavaScript
-- Realtime service layer
-- Supabase SQL schema
-- Public favicon
-- Environment example file
-- Responsive CSS
-- Clean folder structure
-
-## Tech Stack
-
-- Vite
-- HTML
-- CSS
-- JavaScript
-- Supabase
-- SQL
-
-## Project Structure
-
+**Project structure**
 ```txt
 TECZO-WEBSITE-DEMO-2/
-├── database/
-│   └── supabase.sql
-├── public/
-│   └── favicon.svg
+├── database/supabase.sql
+├── public/favicon.svg
 ├── src/
-│   ├── services/
-│   │   └── realtimeService.js
+│   ├── services/realtimeService.js
 │   ├── styles/
 │   │   ├── admin.css
 │   │   └── style.css
@@ -538,49 +332,29 @@ TECZO-WEBSITE-DEMO-2/
 │   ├── customerChatbot.js
 │   └── main.js
 ├── admin.html
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
+└── index.html
 ```
 
-## Run Locally
-
+**Run locally**
 ```powershell
 cd TECZO-WEBSITE-DEMO-2
 npm.cmd install
 npm.cmd run dev
 ```
+Open `http://localhost:5173`
 
-Open:
-
-```txt
-http://localhost:5173
-```
-
-## Supabase Setup
-
-1. Create a Supabase project.
-2. Open SQL Editor.
-3. Run:
-
-```txt
-database/supabase.sql
-```
-
-4. Add project keys inside `.env`.
-
-## Environment Variables
-
-Use `.env.example` as the base.
-
+**Supabase setup:** create a project, run `database/supabase.sql` in the SQL Editor, then add your keys to `.env` (based on `.env.example`):
 ```env
 VITE_SUPABASE_URL=""
 VITE_SUPABASE_ANON_KEY=""
 ```
 
-## Purpose
+<div align="right"><a href="#-table-of-contents">↑ back to top</a></div>
 
-This project demonstrates a simple but production-ready Vite website with frontend pages, admin scripts, chatbot logic, realtime services, and Supabase database setup.
+---
 
-```
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1D9E75,100:7F77DD&height=120&section=footer" width="100%" />
+
+</div>
