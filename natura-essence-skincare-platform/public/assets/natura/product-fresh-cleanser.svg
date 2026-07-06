@@ -1,0 +1,36 @@
+
+<svg width="1400" height="1400" viewBox="0 0 1400 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf2"/>
+      <stop offset="50%" stop-color="#ebe3d5"/>
+      <stop offset="100%" stop-color="#d8ccbb"/>
+    </linearGradient>
+    <radialGradient id="light" cx="28%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#514a3d" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="1400" fill="url(#bg)"/>
+  <rect width="1400" height="1400" fill="url(#light)"/>
+  <circle cx="1180" cy="190" r="280" fill="#ffffff" opacity="0.18"/>
+  <circle cx="180" cy="1180" r="320" fill="#ffffff" opacity="0.16"/>
+  <path d="M0 1040 C260 890 460 1160 700 980 C940 800 1130 900 1400 760 L1400 1400 L0 1400 Z" fill="#ffffff" opacity="0.24"/>
+
+  <g filter="url(#shadow)">
+    
+      <rect x="590" y="280" width="220" height="80" rx="34" fill="#fff9ef"/>
+      <rect x="635" y="190" width="130" height="130" rx="38" fill="#ffffff"/>
+      <rect x="525" y="355" width="350" height="620" rx="84" fill="#f3ebdf"/>
+      <rect x="565" y="425" width="270" height="455" rx="58" fill="#9fa884" opacity="0.25"/>
+      <rect x="595" y="610" width="210" height="150" rx="26" fill="#ffffff" opacity="0.82"/>
+      <text x="700" y="670" text-anchor="middle" font-family="Georgia, serif" font-size="38" fill="#4f5940">natura</text>
+      <text x="700" y="710" text-anchor="middle" font-family="Arial" font-size="17" letter-spacing="3" fill="#4f5940">CLEANSER</text>
+    
+  </g>
+</svg>

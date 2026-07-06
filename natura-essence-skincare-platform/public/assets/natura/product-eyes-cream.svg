@@ -1,0 +1,35 @@
+
+<svg width="1400" height="1400" viewBox="0 0 1400 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf2"/>
+      <stop offset="50%" stop-color="#f0dfcd"/>
+      <stop offset="100%" stop-color="#d6bea7"/>
+    </linearGradient>
+    <radialGradient id="light" cx="28%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#514a3d" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="1400" fill="url(#bg)"/>
+  <rect width="1400" height="1400" fill="url(#light)"/>
+  <circle cx="1180" cy="190" r="280" fill="#ffffff" opacity="0.18"/>
+  <circle cx="180" cy="1180" r="320" fill="#ffffff" opacity="0.16"/>
+  <path d="M0 1040 C260 890 460 1160 700 980 C940 800 1130 900 1400 760 L1400 1400 L0 1400 Z" fill="#ffffff" opacity="0.24"/>
+
+  <g filter="url(#shadow)">
+    
+      <ellipse cx="700" cy="1025" rx="310" ry="44" fill="#302b23" opacity="0.14"/>
+      <path d="M430 610 L930 510 L990 735 L490 850 Z" fill="#d6a47c"/>
+      <path d="M490 850 L990 735 L930 930 L430 1040 Z" fill="#f4e7d8"/>
+      <rect x="575" y="690" width="250" height="95" rx="28" fill="#ffffff" opacity="0.78"/>
+      <text x="700" y="735" text-anchor="middle" font-family="Georgia, serif" font-size="38" fill="#75533a">natura</text>
+      <text x="700" y="772" text-anchor="middle" font-family="Arial" font-size="17" letter-spacing="3" fill="#75533a">EYES</text>
+    
+  </g>
+</svg>

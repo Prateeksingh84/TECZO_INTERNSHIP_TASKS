@@ -1,0 +1,35 @@
+
+<svg width="1400" height="1400" viewBox="0 0 1400 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf2"/>
+      <stop offset="50%" stop-color="#eadcc9"/>
+      <stop offset="100%" stop-color="#d6c2aa"/>
+    </linearGradient>
+    <radialGradient id="light" cx="28%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#514a3d" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="1400" fill="url(#bg)"/>
+  <rect width="1400" height="1400" fill="url(#light)"/>
+  <circle cx="1180" cy="190" r="280" fill="#ffffff" opacity="0.18"/>
+  <circle cx="180" cy="1180" r="320" fill="#ffffff" opacity="0.16"/>
+  <path d="M0 1040 C260 890 460 1160 700 980 C940 800 1130 900 1400 760 L1400 1400 L0 1400 Z" fill="#ffffff" opacity="0.24"/>
+
+  <g filter="url(#shadow)">
+    
+      <ellipse cx="700" cy="1040" rx="300" ry="42" fill="#302b23" opacity="0.14"/>
+      <rect x="450" y="610" width="500" height="300" rx="90" fill="#c7a37f"/>
+      <rect x="505" y="520" width="390" height="120" rx="55" fill="#fffaf0"/>
+      <rect x="560" y="700" width="280" height="118" rx="30" fill="#ffffff" opacity="0.75"/>
+      <text x="700" y="752" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#6a523a">natura</text>
+      <text x="700" y="792" text-anchor="middle" font-family="Arial" font-size="17" letter-spacing="3" fill="#6a523a">HYDRATE</text>
+    
+  </g>
+</svg>

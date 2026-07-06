@@ -1,0 +1,36 @@
+
+<svg width="1400" height="1400" viewBox="0 0 1400 1400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf2"/>
+      <stop offset="50%" stop-color="#eee1cf"/>
+      <stop offset="100%" stop-color="#d4c4ad"/>
+    </linearGradient>
+    <radialGradient id="light" cx="28%" cy="18%" r="72%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="34" stdDeviation="36" flood-color="#514a3d" flood-opacity="0.20"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="1400" fill="url(#bg)"/>
+  <rect width="1400" height="1400" fill="url(#light)"/>
+  <circle cx="1180" cy="190" r="280" fill="#ffffff" opacity="0.18"/>
+  <circle cx="180" cy="1180" r="320" fill="#ffffff" opacity="0.16"/>
+  <path d="M0 1040 C260 890 460 1160 700 980 C940 800 1130 900 1400 760 L1400 1400 L0 1400 Z" fill="#ffffff" opacity="0.24"/>
+
+  <g filter="url(#shadow)">
+    
+      <ellipse cx="700" cy="1050" rx="360" ry="45" fill="#302b23" opacity="0.14"/>
+      <rect x="410" y="560" width="170" height="400" rx="54" fill="#f3e7d7"/>
+      <rect x="610" y="390" width="200" height="570" rx="70" fill="#aab083"/>
+      <rect x="845" y="520" width="160" height="440" rx="54" fill="#ead6bf"/>
+      <rect x="445" y="685" width="96" height="90" rx="18" fill="#ffffff" opacity="0.76"/>
+      <rect x="650" y="610" width="120" height="112" rx="20" fill="#ffffff" opacity="0.74"/>
+      <rect x="878" y="675" width="96" height="92" rx="18" fill="#ffffff" opacity="0.74"/>
+    
+  </g>
+</svg>
