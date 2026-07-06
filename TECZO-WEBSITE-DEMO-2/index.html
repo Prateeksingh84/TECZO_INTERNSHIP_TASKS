@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Teczo | Real-Time Software Solutions Demo</title>
+
+  <meta
+    name="description"
+    content="Professional animated real-time demo website for Teczo Softwares using Vite, JavaScript, Supabase and PostgreSQL."
+  />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<body>
+
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <div class="progress-bar" id="progressBar" aria-hidden="true"></div>
+
+  <!-- HEADER -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+
+      <a href="#top" class="logo">
+        <span class="logo-mark" aria-hidden="true"></span>
+        Teczo<span class="logo-dot">.</span>
+      </a>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#impact" class="nav-link">Impact</a>
+        <a href="#testimonials" class="nav-link">Clients</a>
+        <a href="admin.html" class="nav-link">Admin</a>
+        <a href="#contact" class="nav-link nav-cta">Book a Call</a>
+      </nav>
+
+      <button
+        class="nav-toggle"
+        id="navToggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+    <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+
+      <p class="eyebrow fade-up">
+        <span class="eyebrow-pulse" aria-hidden="true"></span>
+        Enterprise Grade Software
+      </p>
+
+      <h1 class="hero-title fade-up" style="--d:0.08s">
+        We build and scale <span class="hl">SaaS products</span><br />
+        from idea to launch.
+      </h1>
+
+      <p class="hero-sub fade-up" style="--d:0.16s">
+        Custom software, AI automation, business websites, admin dashboards,
+        integrations and real-time systems that help companies grow faster.
+      </p>
+
+      <div class="hero-cta fade-up" style="--d:0.24s">
+        <a href="#contact" class="btn btn-primary">Schedule Consultation</a>
+        <a href="#impact" class="btn btn-ghost">Explore Work</a>
+      </div>
+
+      <div
+        class="terminal fade-up"
+        style="--d:0.34s"
+        role="img"
+        aria-label="Build pipeline animation"
+      >
+        <div class="terminal-bar">
+          <span class="dot dot-r"></span>
+          <span class="dot dot-y"></span>
+          <span class="dot dot-g"></span>
+          <span class="terminal-title">teczo / build.log</span>
+        </div>
+
+        <div class="terminal-body">
+
+          <div class="terminal-line">
+            <span class="prompt">&gt;</span>
+            <span class="typed" id="typedText"></span>
+            <span class="cursor">█</span>
+          </div>
+
+          <div class="phase-track">
+            <span class="phase">validate</span>
+            <span class="phase">architect</span>
+            <span class="phase">build</span>
+            <span class="phase">ship</span>
+            <span class="phase">scale</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <span></span>
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="container">
+
+      <p class="eyebrow eyebrow-dark reveal">About Us</p>
+
+      <h2 class="section-title reveal">
+        We are a focused tech execution company.
+      </h2>
+
+      <div class="about-grid">
+
+        <div class="about-copy reveal">
+          <p>
+            Teczo Softwares helps startups, founders and growing businesses
+            convert ideas into scalable digital products.
+          </p>
+
+          <p>
+            We work on websites, SaaS platforms, AI automation, e-commerce
+            engineering, dashboards and custom software solutions.
+          </p>
+
+          <p>
+            The goal is simple: understand the business problem, build the
+            right solution, and make sure it works in the real world.
+          </p>
+        </div>
+
+        <blockquote class="about-quote reveal">
+          <p>
+            “Ideas are cheap. Execution, product thinking and reliable delivery
+            make the difference.”
+          </p>
+
+          <footer>
+            <strong>At Teczo, execution is everything.</strong>
+            <span>
+              We build reliable, responsive and scalable systems.
+            </span>
+          </footer>
+        </blockquote>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section services" id="services">
+
+    <div class="container services-heading">
+
+      <p class="eyebrow reveal">Services</p>
+
+      <h2 class="section-title reveal">
+        Our Expertise
+      </h2>
+
+      <p class="section-sub reveal">
+        Click or hover over any card to explore our capabilities.
+      </p>
+
+    </div>
+
+    <div class="container services-card-container">
+
+      <div class="card-grid">
+
+        <!-- CARD 1 -->
+        <article class="service-card reveal" tabindex="0">
+
+          <div class="service-card-face">
+            <span class="service-icon">◆</span>
+
+            <h3>SaaS Product Development</h3>
+
+            <p>
+              Scalable and high-performance SaaS platforms from MVP to launch.
+            </p>
+
+            <span class="explore-tag">Explore capabilities →</span>
+          </div>
+
+          <div class="service-card-back">
+            <h4>Capabilities</h4>
+
+            <ul>
+              <li>MVP Development</li>
+              <li>Multi-tenant Architecture</li>
+              <li>API Integrations</li>
+              <li>Cloud Infrastructure</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-small">
+              Discuss Project
+            </a>
+          </div>
+
+        </article>
+
+        <!-- CARD 2 -->
+        <article class="service-card reveal" tabindex="0">
+
+          <div class="service-card-face">
+            <span class="service-icon">●</span>
+
+            <h3>AI Automation</h3>
+
+            <p>
+              Workflow automation, custom AI tools, OCR, CRM automation and
+              intelligent data processing.
+            </p>
+
+            <span class="explore-tag">Explore capabilities →</span>
+          </div>
+
+          <div class="service-card-back">
+            <h4>Capabilities</h4>
+
+            <ul>
+              <li>AI Chatbots</li>
+              <li>Workflow Automation</li>
+              <li>CRM Integration</li>
+              <li>AI Data Processing</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-small">
+              Discuss Project
+            </a>
+          </div>
+
+        </article>
+
+        <!-- CARD 3 -->
+        <article class="service-card reveal" tabindex="0">
+
+          <div class="service-card-face">
+            <span class="service-icon">□</span>
+
+            <h3>E-commerce Engineering</h3>
+
+            <p>
+              Shopify apps, headless commerce, payment gateway integrations and
+              optimized checkout experiences.
+            </p>
+
+            <span class="explore-tag">Explore capabilities →</span>
+          </div>
+
+          <div class="service-card-back">
+            <h4>Capabilities</h4>
+
+            <ul>
+              <li>Shopify Apps</li>
+              <li>Headless Commerce</li>
+              <li>Checkout Optimization</li>
+              <li>Payment Integration</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-small">
+              Discuss Project
+            </a>
+          </div>
+
+        </article>
+
+        <!-- CARD 4 -->
+        <article class="service-card reveal" tabindex="0">
+
+          <div class="service-card-face">
+            <span class="service-icon">▲</span>
+
+            <h3>Product Strategy</h3>
+
+            <p>
+              We help validate, plan, build and scale digital products.
+            </p>
+
+            <span class="explore-tag">Explore capabilities →</span>
+          </div>
+
+          <div class="service-card-back">
+            <h4>Capabilities</h4>
+
+            <ul>
+              <li>Product Discovery</li>
+              <li>Tech Stack Consulting</li>
+              <li>Growth Roadmap</li>
+              <li>Cost Optimization</li>
+            </ul>
+
+            <a href="#contact" class="btn btn-small">
+              Discuss Project
+            </a>
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- WHY -->
+  <section class="section perks" id="why">
+    <div class="container">
+
+      <p class="eyebrow reveal">Perks</p>
+
+      <h2 class="section-title reveal">
+        Why Companies Choose Teczo
+      </h2>
+
+      <div class="perks-grid">
+
+        <div class="perk-card perk-card-feature reveal">
+          <div class="avatar-stack" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="perk-stat" data-count="99">0</div>
+
+          <h3>Client-focused approach</h3>
+
+          <p>
+            We prioritize business goals and user needs while building every
+            product.
+          </p>
+        </div>
+
+        <div class="perk-card reveal">
+          <span class="perk-icon">◆</span>
+          <h3>Affordable and scalable</h3>
+          <p>
+            Strong architecture that grows with the business.
+          </p>
+        </div>
+
+        <div class="perk-card reveal">
+          <span class="perk-icon">●</span>
+          <h3>Skilled development team</h3>
+          <p>
+            Developers with modern frontend, backend, AI and deployment skills.
+          </p>
+        </div>
+
+        <div class="perk-card reveal">
+          <span class="perk-icon">□</span>
+          <h3>Latest technologies</h3>
+          <p>
+            Vite, Supabase, PostgreSQL, JavaScript, real-time APIs and cloud
+            deployment.
+          </p>
+        </div>
+
+        <div class="perk-card reveal">
+          <span class="perk-icon">✦</span>
+          <h3>On-time delivery and QA</h3>
+          <p>
+            Tested, responsive and deployment-ready solutions.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="section impact" id="impact">
+    <div class="container">
+
+      <p class="eyebrow eyebrow-dark reveal">
+        Don't take our word for it
+      </p>
+
+      <div class="stats-dashboard reveal">
+
+        <div class="stat-readout">
+          <span class="stat-label">$ uptime --check projects_delivered</span>
+          <span class="stat-value">
+            <span class="counter" data-target="100">0</span>+
+          </span>
+          <span class="stat-name">Projects Delivered</span>
+        </div>
+
+        <div class="stat-readout">
+          <span class="stat-label">$ uptime --check client_retention</span>
+          <span class="stat-value">
+            <span class="counter" data-target="99">0</span>%
+          </span>
+          <span class="stat-name">Client Retention</span>
+        </div>
+
+        <div class="stat-readout">
+          <span class="stat-label">$ uptime --check countries_served</span>
+          <span class="stat-value">
+            <span class="counter" data-target="5">0</span>+
+          </span>
+          <span class="stat-name">Countries Served</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+
+      <p class="eyebrow reveal">What Clients Say</p>
+
+      <h2 class="section-title reveal">
+        Built on trust, proven by results.
+      </h2>
+
+    </div>
+
+    <div class="marquee-wrap">
+
+      <div class="marquee" id="marquee">
+
+        <div class="t-card">
+          <p>
+            “Teczo delivered a scalable and clean web solution with impressive
+            speed.”
+          </p>
+          <div class="t-author">
+            <span class="t-avatar">R</span>
+            <div>
+              <strong>Rakesh Nair</strong>
+              <span>Founder, FleetOps Logistics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p>
+            “Their team helped us reduce manual work using automation.”
+          </p>
+          <div class="t-author">
+            <span class="t-avatar">P</span>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>Operations Manager, EduBridge</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p>
+            “They suggested better technical decisions instead of blindly
+            building features.”
+          </p>
+          <div class="t-author">
+            <span class="t-avatar">A</span>
+            <div>
+              <strong>Arvind Subramanian</strong>
+              <span>CTO, FinEdge Technologies</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card">
+          <p>
+            “The project was cost-effective, professional and delivered on
+            time.”
+          </p>
+          <div class="t-author">
+            <span class="t-avatar">S</span>
+            <div>
+              <strong>Sneha Kulkarni</strong>
+              <span>Co-Founder, HealthKartify</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card" aria-hidden="true">
+          <p>
+            “Teczo delivered a scalable and clean web solution with impressive
+            speed.”
+          </p>
+          <div class="t-author">
+            <span class="t-avatar">R</span>
+            <div>
+              <strong>Rakesh Nair</strong>
+              <span>Founder, FleetOps Logistics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="t-card" aria-hidden="true">
+          <p>
+            “Their team helped us reduce manual work using automation.”
+          </p>
+          <div class="t-author">
+            <span class="t-avatar">P</span>
+            <div>
+              <strong>Priya Sharma</strong>
+              <span>Operations Manager, EduBridge</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+
+    <div class="hero-glow hero-glow-3" aria-hidden="true"></div>
+
+    <div class="container contact-inner">
+
+      <p class="eyebrow eyebrow-dark reveal">Get In Touch</p>
+
+      <h2 class="section-title reveal">
+        Ready to start your<br />
+        digital transformation?
+      </h2>
+
+      <p class="section-sub reveal">
+        Submit your project inquiry. The lead will be saved and shown instantly
+        in the admin dashboard.
+      </p>
+
+      <p class="realtime-mode reveal" id="realtimeMode">
+        Checking real-time mode...
+      </p>
+
+      <form class="contact-form reveal" id="contactForm" novalidate>
+
+        <div class="form-row">
+
+          <div class="field">
+            <input type="text" id="name" name="name" required placeholder=" " />
+            <label for="name">Your Name</label>
+          </div>
+
+          <div class="field">
+            <input type="email" id="email" name="email" required placeholder=" " />
+            <label for="email">Email Address</label>
+          </div>
+
+        </div>
+
+        <div class="field">
+          <input type="text" id="company" name="company" placeholder=" " />
+          <label for="company">Company optional</label>
+        </div>
+
+        <div class="field">
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            placeholder=" "
+          ></textarea>
+          <label for="message">Tell us about your project</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-submit">
+          <span class="btn-text">Submit Request</span>
+          <span class="btn-loader" aria-hidden="true"></span>
+        </button>
+
+        <p class="form-success" id="formSuccess" role="status">
+          Thanks — your message has been received.
+        </p>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <span class="logo">Teczo<span class="logo-dot">.</span></span>
+        <p>Building the future of software.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#impact">Impact</a>
+        <a href="#contact">Contact</a>
+        <a href="admin.html">Admin Dashboard</a>
+      </div>
+
+      <div class="footer-contact">
+        <a href="mailto:info@teczosoftwares.com">info@teczosoftwares.com</a>
+        <a href="tel:+917337692174">+91 7337692174</a>
+      </div>
+
+    </div>
+
+    <div class="container footer-bottom">
+      <span>
+        Teczo © 2026 All rights reserved. Demo build for internship review.
+      </span>
+    </div>
+
+  </footer>
+
+  <a href="#contact" class="float-cta" id="floatCta">
+    <span>Book a Call</span>
+  </a>
+
+  <script type="module" src="/src/main.js"></script>
+
+</body>
+</html>
