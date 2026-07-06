@@ -1,0 +1,29 @@
+{
+  "name": "teczo-futuristic-realtime-website",
+  "version": "2.0.0",
+  "description": "Futuristic Teczo Softwares website with SEO pages, Supabase backend, realtime leads, chatbot and admin dashboard.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  },
+  "devDependencies": {
+    "vite": "^5.4.8"
+  },
+  "keywords": [
+    "vite",
+    "supabase",
+    "seo",
+    "realtime",
+    "lead-management",
+    "chatbot",
+    "admin-dashboard"
+  ],
+  "author": "Prateek Singh",
+  "license": "MIT"
+}
