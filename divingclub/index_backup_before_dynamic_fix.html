@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DivingClub - Get the best scuba diving experience with globally trusted diving courses, expert instructors, and unforgettable underwater adventures.">
+    <title>DivingClub - Best Diving Experience In Your Life</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== TOAST NOTIFICATION CONTAINER ===== -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- ===== HEADER / NAVIGATION ===== -->
+    <header id="main-header">
+        <nav class="navbar">
+            <a href="#" class="logo" id="logo">
+                <span class="logo-icon">🤿</span>
+                <span class="logo-text">DIVINGCLUB</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#moments" class="nav-link">Events</a></li>
+                <li><a href="#activities" class="nav-link">Gallery</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <!-- Logged OUT state -->
+                <div id="auth-logged-out" class="nav-auth-group">
+                    <a href="#" class="btn btn-primary-nav" id="nav-book-btn">BOOK NOW</a>
+                    <a href="#" class="btn btn-outline-nav" id="nav-login-btn">LOGIN</a>
+                </div>
+                <!-- Logged IN state -->
+                <div id="auth-logged-in" class="nav-auth-group" style="display: none;">
+                    <a href="#" class="btn btn-primary-nav" id="nav-book-btn-auth">BOOK NOW</a>
+                    <div class="nav-user-dropdown" id="nav-user-dropdown">
+                        <button class="nav-user-btn" id="nav-user-btn" aria-label="User menu">
+                            <div class="nav-user-avatar" id="nav-user-avatar">
+                                <img src="" alt="Avatar" id="nav-avatar-img">
+                                <div class="nav-avatar-fallback" id="nav-avatar-fallback">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <span class="nav-user-name" id="nav-user-name">User</span>
+                            <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu" id="user-dropdown-menu">
+                            <a href="#" id="profile-btn" class="dropdown-item">
+                                <i class="fas fa-user-circle"></i> My Profile
+                            </a>
+                            <a href="#" id="my-bookings-btn" class="dropdown-item">
+                                <i class="fas fa-calendar-check"></i> My Bookings
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" id="logout-btn" class="dropdown-item dropdown-item-danger">
+                                <i class="fas fa-sign-out-alt"></i> Log Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== AUTH MODAL ===== -->
+    <div class="modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-label="Authentication">
+        <div class="modal-container auth-modal-container">
+            <button class="modal-close" id="close-auth-modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="auth-modal-header">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" data-tab="login" id="tab-login-btn">Login</button>
+                    <button class="auth-tab-btn" data-tab="signup" id="tab-signup-btn">Sign Up</button>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-tab-content active" id="auth-login-tab">
+                <form id="login-form" class="auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" name="email" placeholder="name@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="login-submit-btn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <p class="auth-switch">
+                        Don't have an account? <a href="#" data-switch-tab="signup">Sign up</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-tab-content" id="auth-signup-tab">
+                <form id="signup-form" class="auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="signup-name" name="fullName" placeholder="John Doe" required autocomplete="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="signup-email" name="email" placeholder="name@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signup-password" name="password" placeholder="Min. 6 characters" required minlength="6" autocomplete="new-password">
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="password-strength">
+                            <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+                            <span class="strength-label" id="strength-label"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signup-confirm-password" name="confirmPassword" placeholder="Confirm your password" required autocomplete="new-password">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="signup-submit-btn">
+                        <span class="btn-text">Create Account</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <p class="auth-switch">
+                        Already have an account? <a href="#" data-switch-tab="login">Sign in</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PROFILE MODAL ===== -->
+    <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true" aria-label="User Profile">
+        <div class="modal-container profile-modal-container">
+            <button class="modal-close" id="close-profile-modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="profile-modal-header">
+                <h2>My Profile</h2>
+            </div>
+            <div class="profile-modal-body">
+                <!-- Avatar Section -->
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-display" id="profile-avatar-display">
+                        <img src="" alt="Profile Avatar" id="profile-avatar-img">
+                        <div class="profile-avatar-fallback" id="profile-avatar-fallback">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="avatar-upload-overlay" id="avatar-upload-trigger">
+                            <i class="fas fa-camera"></i>
+                            <span>Change</span>
+                        </div>
+                    </div>
+                    <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" hidden>
+                    <div class="avatar-actions">
+                        <button type="button" class="btn btn-sm btn-outline-light" id="change-avatar-btn">
+                            <i class="fas fa-camera"></i> Change Photo
+                        </button>
+                        <button type="button" class="btn btn-sm btn-ghost-danger" id="remove-avatar-btn">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Crop Preview Container -->
+                <div class="crop-preview-container" id="crop-preview-container" style="display: none;">
+                    <h4>Crop Your Photo</h4>
+                    <div class="crop-image-wrapper">
+                        <img id="crop-image" src="" alt="Crop preview">
+                    </div>
+                    <div class="crop-actions">
+                        <button type="button" class="btn btn-primary btn-sm" id="crop-save-btn">
+                            <i class="fas fa-check"></i> Save
+                        </button>
+                        <button type="button" class="btn btn-outline-light btn-sm" id="crop-cancel-btn">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Form -->
+                <form id="profile-form" class="profile-form" novalidate>
+                    <div class="form-group">
+                        <label for="profile-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="profile-name" name="full_name" placeholder="Your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Email <span class="form-hint">(cannot be changed)</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="profile-email" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-phone">Phone Number</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="profile-phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-bio">Bio</label>
+                        <textarea id="profile-bio" name="bio" rows="3" placeholder="Tell us about yourself and your diving experience..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="profile-save-btn">
+                        <span class="btn-text">Save Changes</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                </form>
+
+                <!-- Danger Zone -->
+                <div class="danger-zone">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Danger Zone</h4>
+                    <p>Permanently delete your account and all associated data. This action cannot be undone.</p>
+                    <button type="button" class="btn btn-danger btn-sm" id="delete-account-btn">
+                        <i class="fas fa-trash-alt"></i> Delete My Account
+                    </button>
+                </div>
+
+                <!-- Delete Confirmation Dialog -->
+                <div class="delete-confirm-dialog" id="delete-confirm-dialog" style="display: none;">
+                    <div class="delete-confirm-content">
+                        <i class="fas fa-exclamation-triangle warning-icon"></i>
+                        <h4>Delete Account?</h4>
+                        <p>This will permanently delete your account, profile, and all associated data. This cannot be undone.</p>
+                        <div class="delete-confirm-actions">
+                            <button type="button" class="btn btn-danger" id="confirm-delete-yes">
+                                <i class="fas fa-trash-alt"></i> Yes, Delete
+                            </button>
+                            <button type="button" class="btn btn-outline-light" id="confirm-delete-no">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BOOKING MODAL ===== -->
+    <div class="modal-overlay" id="booking-modal" role="dialog" aria-modal="true" aria-label="Book Now">
+        <div class="modal-container booking-modal-container">
+            <button class="modal-close" id="close-booking-modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="booking-modal-header">
+                <h2>Book Your Dive</h2>
+                <p>Fill in the details and we'll get back to you within 24 hours.</p>
+            </div>
+            <form id="booking-form" class="booking-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="booking-name">Full Name *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="booking-name" name="name" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-email">Email *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="booking-email" name="email" placeholder="name@email.com" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="booking-phone">Phone</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="booking-phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-type">Booking Type</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-water"></i>
+                            <select id="booking-type" name="booking_type">
+                                <option value="general">General Inquiry</option>
+                                <option value="course">Diving Course</option>
+                                <option value="diving">Diving Trip</option>
+                                <option value="event">Event</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="booking-message">Message</label>
+                    <textarea id="booking-message" name="message" rows="4" placeholder="Tell us about your diving experience level and what you're looking for..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="booking-submit-btn">
+                    <span class="btn-text">Submit Booking</span>
+                    <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg">
+            <img src="images/hero_background.jpg" alt="Underwater diving scene" class="hero-bg-img">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge" data-animate="fade-down">
+                    <span class="discount-tag">Get 25% Off</span>
+                </div>
+                <h1 data-animate="fade-up">
+                    <span class="hero-line">Best</span>
+                    <span class="hero-line">Diving <em>Experience</em></span>
+                    <span class="hero-line">In Your Life</span>
+                </h1>
+                <p class="hero-description" data-animate="fade-up" data-delay="200">
+                    Discover extraordinary experiences curated by local experts. Create memories that last a lifetime with our premium excursions.
+                </p>
+                <div class="hero-cta" data-animate="fade-up" data-delay="400">
+                    <a href="#" class="btn btn-primary book-now-trigger" id="hero-book-btn">BOOK NOW</a>
+                    <a href="#" class="btn btn-outline contact-us-trigger" id="hero-contact-btn">CONTACT US</a>
+                </div>
+            </div>
+            <div class="hero-sidebar">
+                <div class="social-links" data-animate="fade-left">
+                    <a href="#" class="social-link" id="social-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" id="social-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" id="social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" id="social-pinterest" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bottom-card" data-animate="fade-up" data-delay="600">
+            <div class="hero-card-img">
+                <img src="images/hero_card.jpg" alt="Diving group">
+            </div>
+            <div class="hero-card-info">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <div class="stat-number" id="stat-members">500+</div>
+                <div class="stat-text">Joined our<br>Scuba dive club</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GLOBALLY TRUSTED SECTION ===== -->
+    <section id="about" class="trusted-section">
+        <div class="watermark-text" aria-hidden="true">DIVINGCLUB</div>
+        <div class="trusted-content">
+            <h2 class="section-title" data-animate="fade-up">Globally Trusted Diving</h2>
+            <p class="section-description" data-animate="fade-up" data-delay="200">
+                The most recognized dive training organization worldwide with over 30 million divers and counting. PADI Dive Instructors undergo rigorous training to ensure your scuba certification class is fun and conducted with care.
+            </p>
+            <div class="trusted-cta" data-animate="fade-up" data-delay="400">
+                <a href="#" class="btn btn-primary book-now-trigger" id="trusted-book-btn">BOOK NOW</a>
+                <a href="#" class="btn btn-outline-dark contact-us-trigger" id="trusted-contact-btn">CONTACT US</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACTIVITIES SECTION (Dynamic) ===== -->
+    <section id="activities" class="activities-section">
+        <div class="activities-grid" id="activities-grid">
+            <!-- Dynamic content loaded by DataService -->
+            <div class="skeleton-card activity-skeleton"><div class="skeleton-image tall shimmer"></div></div>
+            <div class="skeleton-card activity-skeleton"><div class="skeleton-image tall shimmer"></div></div>
+            <div class="skeleton-card activity-skeleton"><div class="skeleton-image tall shimmer"></div></div>
+        </div>
+        <div class="carousel-dots activities-dots" data-animate="fade-up" data-delay="600">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- ===== BLOG SECTION (Dynamic) ===== -->
+    <section id="blog" class="blog-section">
+        <div class="blog-header">
+            <h2 class="section-title" data-animate="fade-up">Visit Our Blog</h2>
+            <div class="blog-nav-arrows" data-animate="fade-left">
+                <button class="arrow-btn" id="blog-prev-btn" aria-label="Previous blog posts"><i class="fas fa-chevron-left"></i></button>
+                <button class="arrow-btn" id="blog-next-btn" aria-label="Next blog posts"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="blog-grid" id="blog-grid">
+            <!-- Dynamic content loaded by DataService -->
+            <div class="skeleton-card blog-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-meta shimmer"></div><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div></div></div>
+            <div class="skeleton-card blog-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-meta shimmer"></div><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div></div></div>
+            <div class="skeleton-card blog-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-meta shimmer"></div><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div></div></div>
+        </div>
+    </section>
+
+    <!-- ===== DIVING MOMENTS SECTION (Dynamic) ===== -->
+    <section id="moments" class="moments-section">
+        <div class="moments-header">
+            <h2 class="section-title" data-animate="fade-up">
+                <span class="highlight">Diving Club</span> Moment
+            </h2>
+            <a href="#" class="contact-link contact-us-trigger" data-animate="fade-left">CONTACT US</a>
+        </div>
+        <div class="moments-carousel-wrapper">
+            <div class="moments-carousel" id="moments-carousel">
+                <!-- Dynamic content loaded by DataService -->
+                <div class="skeleton-card moment-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div><div class="skeleton-meta shimmer"></div></div></div>
+                <div class="skeleton-card moment-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div><div class="skeleton-meta shimmer"></div></div></div>
+                <div class="skeleton-card moment-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div><div class="skeleton-meta shimmer"></div></div></div>
+            </div>
+            <button class="carousel-arrow moments-arrow-right" id="moments-next-btn" aria-label="Next moment">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="carousel-dots moments-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER / SUBSCRIBE SECTION ===== -->
+    <section id="newsletter" class="newsletter-section">
+        <div class="newsletter-bg">
+            <img src="images/newsletter_bg.jpg" alt="Deep ocean" class="newsletter-bg-img" loading="lazy">
+            <div class="newsletter-overlay"></div>
+        </div>
+        <div class="newsletter-content">
+            <h2 data-animate="fade-up">
+                Discover Hidden Treasures<br>
+                <span class="highlight">Underwater World</span> Today
+            </h2>
+            <form class="subscribe-form" id="subscribe-form" data-animate="fade-up" data-delay="200">
+                <input type="email" id="email-input" placeholder="name@email.com" aria-label="Email address" required>
+                <button type="submit" class="btn btn-subscribe" id="subscribe-btn">
+                    <span class="btn-text">Subscribe</span>
+                    <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="main-footer" class="footer-section">
+        <div class="footer-content">
+            <div class="footer-col footer-about">
+                <a href="#" class="footer-logo">
+                    <span class="logo-icon">🤿</span>
+                    <span class="logo-text">DIVINGCLUB</span>
+                </a>
+                <p>Discover a world that lies beneath the surface where you're seeking adventure or serenity, to explore its wonders and uncover the treasures.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" id="footer-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" id="footer-instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn" id="footer-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#activities">Gallery</a></li>
+                    <li><a href="#moments">Events</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="#services">Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="contact-list">
+                    <li><i class="fas fa-phone-alt"></i> <span>+1(51) 3645-1785</span></li>
+                    <li><i class="fas fa-envelope"></i> <span>info@underwatertreasures.com</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>123 Ocean Drive, Coral Bay,<br>Marine City</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Find the Treasures of the Underwater World. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Cropper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <!-- App Modules (order matters) -->
+    <script src="js/supabase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/realtime.js"></script>
+</body>
+</html>

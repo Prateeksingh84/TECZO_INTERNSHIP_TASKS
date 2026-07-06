@@ -1,0 +1,4181 @@
+==================== index.html ====================
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DivingClub - Get the best scuba diving experience with globally trusted diving courses, expert instructors, and unforgettable underwater adventures.">
+    <title>DivingClub - Best Diving Experience In Your Life</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ===== TOAST NOTIFICATION CONTAINER ===== -->
+    <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+    <!-- ===== HEADER / NAVIGATION ===== -->
+    <header id="main-header">
+        <nav class="navbar">
+            <a href="#" class="logo" id="logo">
+                <span class="logo-icon">🤿</span>
+                <span class="logo-text">DIVINGCLUB</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About Us</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#moments" class="nav-link">Events</a></li>
+                <li><a href="#activities" class="nav-link">Gallery</a></li>
+                <li><a href="#blog" class="nav-link">Blog</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <!-- Logged OUT state -->
+                <div id="auth-logged-out" class="nav-auth-group">
+                    <a href="#" class="btn btn-primary-nav" id="nav-book-btn">BOOK NOW</a>
+                    <a href="#" class="btn btn-outline-nav" id="nav-login-btn">LOGIN</a>
+                </div>
+                <!-- Logged IN state -->
+                <div id="auth-logged-in" class="nav-auth-group" style="display: none;">
+                    <a href="#" class="btn btn-primary-nav" id="nav-book-btn-auth">BOOK NOW</a>
+                    <div class="nav-user-dropdown" id="nav-user-dropdown">
+                        <button class="nav-user-btn" id="nav-user-btn" aria-label="User menu">
+                            <div class="nav-user-avatar" id="nav-user-avatar">
+                                <img src="" alt="Avatar" id="nav-avatar-img">
+                                <div class="nav-avatar-fallback" id="nav-avatar-fallback">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <span class="nav-user-name" id="nav-user-name">User</span>
+                            <i class="fas fa-chevron-down nav-dropdown-arrow"></i>
+                        </button>
+                        <div class="dropdown-menu" id="user-dropdown-menu">
+                            <a href="#" id="profile-btn" class="dropdown-item">
+                                <i class="fas fa-user-circle"></i> My Profile
+                            </a>
+                            <a href="#" id="my-bookings-btn" class="dropdown-item">
+                                <i class="fas fa-calendar-check"></i> My Bookings
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" id="logout-btn" class="dropdown-item dropdown-item-danger">
+                                <i class="fas fa-sign-out-alt"></i> Log Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ===== AUTH MODAL ===== -->
+    <div class="modal-overlay" id="auth-modal" role="dialog" aria-modal="true" aria-label="Authentication">
+        <div class="modal-container auth-modal-container">
+            <button class="modal-close" id="close-auth-modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="auth-modal-header">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" data-tab="login" id="tab-login-btn">Login</button>
+                    <button class="auth-tab-btn" data-tab="signup" id="tab-signup-btn">Sign Up</button>
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-tab-content active" id="auth-login-tab">
+                <form id="login-form" class="auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="login-email" name="email" placeholder="name@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="login-password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="login-submit-btn">
+                        <span class="btn-text">Sign In</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <p class="auth-switch">
+                        Don't have an account? <a href="#" data-switch-tab="signup">Sign up</a>
+                    </p>
+                </form>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-tab-content" id="auth-signup-tab">
+                <form id="signup-form" class="auth-form" novalidate>
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="signup-name" name="fullName" placeholder="John Doe" required autocomplete="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="signup-email" name="email" placeholder="name@email.com" required autocomplete="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signup-password" name="password" placeholder="Min. 6 characters" required minlength="6" autocomplete="new-password">
+                            <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="password-strength">
+                            <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+                            <span class="strength-label" id="strength-label"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="signup-confirm-password" name="confirmPassword" placeholder="Confirm your password" required autocomplete="new-password">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="signup-submit-btn">
+                        <span class="btn-text">Create Account</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                    <p class="auth-switch">
+                        Already have an account? <a href="#" data-switch-tab="login">Sign in</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PROFILE MODAL ===== -->
+    <div class="modal-overlay" id="profile-modal" role="dialog" aria-modal="true" aria-label="User Profile">
+        <div class="modal-container profile-modal-container">
+            <button class="modal-close" id="close-profile-modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="profile-modal-header">
+                <h2>My Profile</h2>
+            </div>
+            <div class="profile-modal-body">
+                <!-- Avatar Section -->
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar-display" id="profile-avatar-display">
+                        <img src="" alt="Profile Avatar" id="profile-avatar-img">
+                        <div class="profile-avatar-fallback" id="profile-avatar-fallback">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="avatar-upload-overlay" id="avatar-upload-trigger">
+                            <i class="fas fa-camera"></i>
+                            <span>Change</span>
+                        </div>
+                    </div>
+                    <input type="file" id="avatar-input" accept="image/jpeg,image/png,image/webp" hidden>
+                    <div class="avatar-actions">
+                        <button type="button" class="btn btn-sm btn-outline-light" id="change-avatar-btn">
+                            <i class="fas fa-camera"></i> Change Photo
+                        </button>
+                        <button type="button" class="btn btn-sm btn-ghost-danger" id="remove-avatar-btn">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Crop Preview Container -->
+                <div class="crop-preview-container" id="crop-preview-container" style="display: none;">
+                    <h4>Crop Your Photo</h4>
+                    <div class="crop-image-wrapper">
+                        <img id="crop-image" src="" alt="Crop preview">
+                    </div>
+                    <div class="crop-actions">
+                        <button type="button" class="btn btn-primary btn-sm" id="crop-save-btn">
+                            <i class="fas fa-check"></i> Save
+                        </button>
+                        <button type="button" class="btn btn-outline-light btn-sm" id="crop-cancel-btn">
+                            <i class="fas fa-times"></i> Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Form -->
+                <form id="profile-form" class="profile-form" novalidate>
+                    <div class="form-group">
+                        <label for="profile-name">Full Name</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="profile-name" name="full_name" placeholder="Your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Email <span class="form-hint">(cannot be changed)</span></label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="profile-email" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-phone">Phone Number</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="profile-phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-bio">Bio</label>
+                        <textarea id="profile-bio" name="bio" rows="3" placeholder="Tell us about yourself and your diving experience..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="profile-save-btn">
+                        <span class="btn-text">Save Changes</span>
+                        <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                    </button>
+                </form>
+
+                <!-- Danger Zone -->
+                <div class="danger-zone">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Danger Zone</h4>
+                    <p>Permanently delete your account and all associated data. This action cannot be undone.</p>
+                    <button type="button" class="btn btn-danger btn-sm" id="delete-account-btn">
+                        <i class="fas fa-trash-alt"></i> Delete My Account
+                    </button>
+                </div>
+
+                <!-- Delete Confirmation Dialog -->
+                <div class="delete-confirm-dialog" id="delete-confirm-dialog" style="display: none;">
+                    <div class="delete-confirm-content">
+                        <i class="fas fa-exclamation-triangle warning-icon"></i>
+                        <h4>Delete Account?</h4>
+                        <p>This will permanently delete your account, profile, and all associated data. This cannot be undone.</p>
+                        <div class="delete-confirm-actions">
+                            <button type="button" class="btn btn-danger" id="confirm-delete-yes">
+                                <i class="fas fa-trash-alt"></i> Yes, Delete
+                            </button>
+                            <button type="button" class="btn btn-outline-light" id="confirm-delete-no">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BOOKING MODAL ===== -->
+    <div class="modal-overlay" id="booking-modal" role="dialog" aria-modal="true" aria-label="Book Now">
+        <div class="modal-container booking-modal-container">
+            <button class="modal-close" id="close-booking-modal" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="booking-modal-header">
+                <h2>Book Your Dive</h2>
+                <p>Fill in the details and we'll get back to you within 24 hours.</p>
+            </div>
+            <form id="booking-form" class="booking-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="booking-name">Full Name *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="booking-name" name="name" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-email">Email *</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="booking-email" name="email" placeholder="name@email.com" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="booking-phone">Phone</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="booking-phone" name="phone" placeholder="+1 (555) 123-4567">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="booking-type">Booking Type</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-water"></i>
+                            <select id="booking-type" name="booking_type">
+                                <option value="general">General Inquiry</option>
+                                <option value="course">Diving Course</option>
+                                <option value="diving">Diving Trip</option>
+                                <option value="event">Event</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="booking-message">Message</label>
+                    <textarea id="booking-message" name="message" rows="4" placeholder="Tell us about your diving experience level and what you're looking for..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="booking-submit-btn">
+                    <span class="btn-text">Submit Booking</span>
+                    <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg">
+            <img src="images/hero_background.jpg" alt="Underwater diving scene" class="hero-bg-img">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge" data-animate="fade-down">
+                    <span class="discount-tag">Get 25% Off</span>
+                </div>
+                <h1 data-animate="fade-up">
+                    <span class="hero-line">Best</span>
+                    <span class="hero-line">Diving <em>Experience</em></span>
+                    <span class="hero-line">In Your Life</span>
+                </h1>
+                <p class="hero-description" data-animate="fade-up" data-delay="200">
+                    Discover extraordinary experiences curated by local experts. Create memories that last a lifetime with our premium excursions.
+                </p>
+                <div class="hero-cta" data-animate="fade-up" data-delay="400">
+                    <a href="#" class="btn btn-primary book-now-trigger" id="hero-book-btn">BOOK NOW</a>
+                    <a href="#" class="btn btn-outline contact-us-trigger" id="hero-contact-btn">CONTACT US</a>
+                </div>
+            </div>
+            <div class="hero-sidebar">
+                <div class="social-links" data-animate="fade-left">
+                    <a href="#" class="social-link" id="social-facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" id="social-twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link" id="social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" id="social-pinterest" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bottom-card" data-animate="fade-up" data-delay="600">
+            <div class="hero-card-img">
+                <img src="images/hero_card.jpg" alt="Diving group">
+            </div>
+            <div class="hero-card-info">
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <div class="stat-number" id="stat-members">500+</div>
+                <div class="stat-text">Joined our<br>Scuba dive club</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GLOBALLY TRUSTED SECTION ===== -->
+    <section id="about" class="trusted-section">
+        <div class="watermark-text" aria-hidden="true">DIVINGCLUB</div>
+        <div class="trusted-content">
+            <h2 class="section-title" data-animate="fade-up">Globally Trusted Diving</h2>
+            <p class="section-description" data-animate="fade-up" data-delay="200">
+                The most recognized dive training organization worldwide with over 30 million divers and counting. PADI Dive Instructors undergo rigorous training to ensure your scuba certification class is fun and conducted with care.
+            </p>
+            <div class="trusted-cta" data-animate="fade-up" data-delay="400">
+                <a href="#" class="btn btn-primary book-now-trigger" id="trusted-book-btn">BOOK NOW</a>
+                <a href="#" class="btn btn-outline-dark contact-us-trigger" id="trusted-contact-btn">CONTACT US</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACTIVITIES SECTION (Dynamic) ===== -->
+    <section id="activities" class="activities-section">
+        <div class="activities-grid" id="activities-grid">
+            <!-- Dynamic content loaded by DataService -->
+            <div class="skeleton-card activity-skeleton"><div class="skeleton-image tall shimmer"></div></div>
+            <div class="skeleton-card activity-skeleton"><div class="skeleton-image tall shimmer"></div></div>
+            <div class="skeleton-card activity-skeleton"><div class="skeleton-image tall shimmer"></div></div>
+        </div>
+        <div class="carousel-dots activities-dots" data-animate="fade-up" data-delay="600">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- ===== BLOG SECTION (Dynamic) ===== -->
+    <section id="blog" class="blog-section">
+        <div class="blog-header">
+            <h2 class="section-title" data-animate="fade-up">Visit Our Blog</h2>
+            <div class="blog-nav-arrows" data-animate="fade-left">
+                <button class="arrow-btn" id="blog-prev-btn" aria-label="Previous blog posts"><i class="fas fa-chevron-left"></i></button>
+                <button class="arrow-btn" id="blog-next-btn" aria-label="Next blog posts"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="blog-grid" id="blog-grid">
+            <!-- Dynamic content loaded by DataService -->
+            <div class="skeleton-card blog-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-meta shimmer"></div><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div></div></div>
+            <div class="skeleton-card blog-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-meta shimmer"></div><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div></div></div>
+            <div class="skeleton-card blog-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-meta shimmer"></div><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div></div></div>
+        </div>
+    </section>
+
+    <!-- ===== DIVING MOMENTS SECTION (Dynamic) ===== -->
+    <section id="moments" class="moments-section">
+        <div class="moments-header">
+            <h2 class="section-title" data-animate="fade-up">
+                <span class="highlight">Diving Club</span> Moment
+            </h2>
+            <a href="#" class="contact-link contact-us-trigger" data-animate="fade-left">CONTACT US</a>
+        </div>
+        <div class="moments-carousel-wrapper">
+            <div class="moments-carousel" id="moments-carousel">
+                <!-- Dynamic content loaded by DataService -->
+                <div class="skeleton-card moment-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div><div class="skeleton-meta shimmer"></div></div></div>
+                <div class="skeleton-card moment-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div><div class="skeleton-meta shimmer"></div></div></div>
+                <div class="skeleton-card moment-skeleton"><div class="skeleton-image shimmer"></div><div class="skeleton-info"><div class="skeleton-title shimmer"></div><div class="skeleton-text shimmer"></div><div class="skeleton-meta shimmer"></div></div></div>
+            </div>
+            <button class="carousel-arrow moments-arrow-right" id="moments-next-btn" aria-label="Next moment">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="carousel-dots moments-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER / SUBSCRIBE SECTION ===== -->
+    <section id="newsletter" class="newsletter-section">
+        <div class="newsletter-bg">
+            <img src="images/newsletter_bg.jpg" alt="Deep ocean" class="newsletter-bg-img" loading="lazy">
+            <div class="newsletter-overlay"></div>
+        </div>
+        <div class="newsletter-content">
+            <h2 data-animate="fade-up">
+                Discover Hidden Treasures<br>
+                <span class="highlight">Underwater World</span> Today
+            </h2>
+            <form class="subscribe-form" id="subscribe-form" data-animate="fade-up" data-delay="200">
+                <input type="email" id="email-input" placeholder="name@email.com" aria-label="Email address" required>
+                <button type="submit" class="btn btn-subscribe" id="subscribe-btn">
+                    <span class="btn-text">Subscribe</span>
+                    <span class="btn-loader" style="display: none;"><i class="fas fa-spinner fa-spin"></i></span>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="main-footer" class="footer-section">
+        <div class="footer-content">
+            <div class="footer-col footer-about">
+                <a href="#" class="footer-logo">
+                    <span class="logo-icon">🤿</span>
+                    <span class="logo-text">DIVINGCLUB</span>
+                </a>
+                <p>Discover a world that lies beneath the surface where you're seeking adventure or serenity, to explore its wonders and uncover the treasures.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" id="footer-facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" id="footer-twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" id="footer-instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn" id="footer-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#activities">Gallery</a></li>
+                    <li><a href="#moments">Events</a></li>
+                    <li><a href="#about">About us</a></li>
+                    <li><a href="#services">Services</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="contact-list">
+                    <li><i class="fas fa-phone-alt"></i> <span>+1(51) 3645-1785</span></li>
+                    <li><i class="fas fa-envelope"></i> <span>info@underwatertreasures.com</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>123 Ocean Drive, Coral Bay,<br>Marine City</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Find the Treasures of the Underwater World. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Cropper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <!-- App Modules (order matters) -->
+    <script src="js/supabase-config.js"></script>
+    <script src="script.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/realtime.js"></script>
+</body>
+</html>
+
+==================== styles.css ====================
+/* ==========================================
+   DivingClub - Complete Production Stylesheet
+   ========================================== */
+
+/* ===== CSS RESET & ROOT VARIABLES ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Primary Colors */
+    --navy-dark: #070d1b;
+    --navy: #0a1628;
+    --navy-medium: #0f1f3a;
+    --navy-light: #142a4a;
+    --blue-accent: #1a73e8;
+    --blue-deep: #0d47a1;
+    --blue-light: #4fc3f7;
+    --teal: #00bcd4;
+
+    /* Neutral Colors */
+    --white: #ffffff;
+    --gray-100: #f5f7fa;
+    --gray-200: #e8ecf1;
+    --gray-300: #c5cdd8;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --dark-card: #111827;
+
+    /* Semantic Colors */
+    --gold: #f59e0b;
+    --green: #22c55e;
+    --red: #ef4444;
+    --red-dark: #dc2626;
+    --orange: #f97316;
+
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
+
+    /* Spacing */
+    --section-padding: 100px 0;
+    --container-width: 1200px;
+    --container-padding: 0 24px;
+
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.2);
+    --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --glow-blue: 0 0 30px rgba(26, 115, 232, 0.3);
+
+    /* Border Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--white);
+    background: var(--navy-dark);
+    overflow-x: hidden;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+ul { list-style: none; }
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.highlight { color: var(--blue-light); }
+
+.section-title {
+    font-family: var(--font-primary);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.section-description {
+    font-size: 1rem;
+    color: var(--gray-400);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn:hover::before { left: 100%; }
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-primary, .btn-primary-nav {
+    background: var(--blue-accent);
+    color: var(--white);
+    border-color: var(--blue-accent);
+}
+
+.btn-primary:hover, .btn-primary-nav:hover {
+    background: var(--blue-deep);
+    border-color: var(--blue-deep);
+    transform: translateY(-2px);
+    box-shadow: var(--glow-blue);
+}
+
+.btn-outline, .btn-outline-nav {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+}
+
+.btn-outline:hover, .btn-outline-nav:hover {
+    background: var(--white);
+    color: var(--navy);
+    transform: translateY(-2px);
+}
+
+.btn-outline-dark {
+    background: transparent;
+    color: var(--navy);
+    border-color: var(--navy);
+}
+
+.btn-outline-dark:hover {
+    background: var(--navy);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-outline-light {
+    background: transparent;
+    color: var(--gray-300);
+    border-color: var(--gray-400);
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--white);
+    color: var(--white);
+}
+
+.btn-danger {
+    background: var(--red);
+    color: var(--white);
+    border-color: var(--red);
+}
+
+.btn-danger:hover {
+    background: var(--red-dark);
+    border-color: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-ghost-danger {
+    background: transparent;
+    color: var(--red);
+    border-color: transparent;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 500;
+    padding: 8px 16px;
+}
+
+.btn-ghost-danger:hover {
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.btn-full {
+    width: 100%;
+    padding: 14px 28px;
+}
+
+.btn-sm {
+    padding: 8px 18px;
+    font-size: 0.8rem;
+}
+
+.btn-subscribe {
+    background: var(--blue-accent);
+    color: var(--white);
+    border-color: var(--blue-accent);
+    border-radius: 0 6px 6px 0;
+    padding: 14px 32px;
+}
+
+.btn-subscribe:hover {
+    background: var(--blue-deep);
+    border-color: var(--blue-deep);
+}
+
+.btn-loader { display: inline-flex; align-items: center; }
+
+/* ===== TOAST NOTIFICATIONS ===== */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    background: var(--navy-medium);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: var(--white);
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: var(--shadow-lg);
+    pointer-events: all;
+    transform: translateX(120%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 400px;
+    min-width: 280px;
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast.hiding {
+    transform: translateX(120%);
+    opacity: 0;
+}
+
+.toast-icon {
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.toast-success .toast-icon { color: var(--green); }
+.toast-error .toast-icon { color: var(--red); }
+.toast-info .toast-icon { color: var(--blue-light); }
+
+.toast-success { border-left: 3px solid var(--green); }
+.toast-error { border-left: 3px solid var(--red); }
+.toast-info { border-left: 3px solid var(--blue-light); }
+
+.toast-message { flex: 1; line-height: 1.4; }
+
+.toast-close {
+    background: none;
+    border: none;
+    color: var(--gray-400);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 0.85rem;
+    transition: color var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.toast-close:hover { color: var(--white); }
+
+/* ===== HEADER / NAVBAR ===== */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all var(--transition-medium);
+    background: transparent;
+}
+
+#main-header.scrolled {
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1001;
+}
+
+.logo-icon { font-size: 1.5rem; }
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--white);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    position: relative;
+    padding: 4px 0;
+    transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--blue-accent);
+    transition: width var(--transition-medium);
+    border-radius: 1px;
+}
+
+.nav-link:hover, .nav-link.active { color: var(--white); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.nav-auth-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-primary-nav, .btn-outline-nav {
+    padding: 10px 20px;
+    font-size: 0.78rem;
+}
+
+/* ===== NAV USER DROPDOWN ===== */
+.nav-user-dropdown { position: relative; }
+
+.nav-user-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-full);
+    padding: 6px 16px 6px 6px;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    color: var(--white);
+    font-family: var(--font-primary);
+}
+
+.nav-user-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--navy-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-avatar-fallback {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+}
+
+.nav-user-avatar img[src=""],
+.nav-user-avatar img:not([src]) {
+    display: none;
+}
+
+.nav-user-avatar img[src=""]+.nav-avatar-fallback,
+.nav-user-avatar img:not([src])+.nav-avatar-fallback {
+    display: flex;
+}
+
+.nav-user-avatar img:not([src=""])+.nav-avatar-fallback {
+    display: none;
+}
+
+.nav-user-name {
+    font-size: 0.85rem;
+    font-weight: 500;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.nav-dropdown-arrow {
+    font-size: 0.65rem;
+    transition: transform var(--transition-medium);
+}
+
+.nav-user-dropdown.open .nav-dropdown-arrow { transform: rotate(180deg); }
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 200px;
+    background: var(--navy-medium);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    padding: 8px;
+    box-shadow: var(--shadow-xl);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 100;
+}
+
+.nav-user-dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--gray-300);
+    transition: all var(--transition-fast);
+}
+
+.dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--white);
+}
+
+.dropdown-item i { font-size: 0.9rem; width: 18px; text-align: center; }
+
+.dropdown-item-danger { color: var(--red); }
+.dropdown-item-danger:hover { background: rgba(239, 68, 68, 0.1); }
+
+.dropdown-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 6px 0;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 4px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--white);
+    transition: all var(--transition-medium);
+    border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== MODALS ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(7, 13, 27, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.35s ease;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-container {
+    position: relative;
+    background: var(--navy-medium);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-overlay.active .modal-container {
+    transform: translateY(0) scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-400);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    font-size: 0.9rem;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+/* Auth Modal */
+.auth-modal-container { max-width: 440px; }
+
+.auth-modal-header { margin-bottom: 28px; }
+
+.auth-tabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.auth-tab-btn {
+    flex: 1;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: var(--gray-400);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+.auth-tab-btn.active {
+    background: var(--blue-accent);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+}
+
+.auth-tab-btn:hover:not(.active) { color: var(--white); }
+
+.auth-tab-content { display: none; }
+.auth-tab-content.active { display: block; }
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.88rem;
+    color: var(--gray-400);
+}
+
+.auth-switch a {
+    color: var(--blue-light);
+    font-weight: 600;
+}
+
+.auth-switch a:hover { text-decoration: underline; }
+
+/* Profile Modal */
+.profile-modal-container {
+    max-width: 520px;
+}
+
+.profile-modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+
+.profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-avatar-display {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: var(--navy-light);
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.profile-avatar-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-avatar-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-500);
+    font-size: 2.5rem;
+}
+
+.profile-avatar-display img[src=""],
+.profile-avatar-display img:not([src]) {
+    display: none;
+}
+
+.profile-avatar-display img[src=""]+.profile-avatar-fallback,
+.profile-avatar-display img:not([src])+.profile-avatar-fallback {
+    display: flex;
+}
+
+.profile-avatar-display img:not([src=""])+.profile-avatar-fallback {
+    display: none;
+}
+
+.avatar-upload-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--white);
+    font-size: 0.75rem;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+.avatar-upload-overlay i { font-size: 1.2rem; }
+
+.profile-avatar-display:hover .avatar-upload-overlay { opacity: 1; }
+
+.avatar-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* Crop Preview */
+.crop-preview-container {
+    margin-bottom: 24px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.crop-preview-container h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--gray-300);
+}
+
+.crop-image-wrapper {
+    max-height: 350px;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    margin-bottom: 16px;
+    background: #000;
+}
+
+.crop-image-wrapper img {
+    max-width: 100%;
+    display: block;
+}
+
+.crop-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* Booking Modal */
+.booking-modal-container { max-width: 580px; }
+
+.booking-modal-header {
+    margin-bottom: 28px;
+}
+
+.booking-modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.booking-modal-header p {
+    color: var(--gray-400);
+    font-size: 0.9rem;
+}
+
+/* ===== FORM STYLES ===== */
+.form-group {
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-300);
+    margin-bottom: 6px;
+}
+
+.form-hint {
+    font-weight: 400;
+    color: var(--gray-500);
+    font-size: 0.78rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i:first-child {
+    position: absolute;
+    left: 14px;
+    color: var(--gray-500);
+    font-size: 0.88rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    transition: all var(--transition-medium);
+    outline: none;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: var(--blue-accent);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+.input-wrapper input::placeholder { color: var(--gray-500); }
+
+.input-wrapper input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.input-wrapper select {
+    appearance: none;
+    cursor: pointer;
+}
+
+.input-wrapper select option {
+    background: var(--navy-medium);
+    color: var(--white);
+}
+
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--white);
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    resize: vertical;
+    outline: none;
+    transition: all var(--transition-medium);
+}
+
+textarea:focus {
+    border-color: var(--blue-accent);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.15);
+}
+
+textarea::placeholder { color: var(--gray-500); }
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    color: var(--gray-500);
+    cursor: pointer;
+    padding: 4px;
+    font-size: 0.9rem;
+    transition: color var(--transition-fast);
+    z-index: 1;
+}
+
+.toggle-password:hover { color: var(--white); }
+
+/* Password Strength Indicator */
+.password-strength {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.strength-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: all var(--transition-medium);
+}
+
+.strength-fill.weak { width: 25%; background: var(--red); }
+.strength-fill.fair { width: 50%; background: var(--orange); }
+.strength-fill.good { width: 75%; background: var(--gold); }
+.strength-fill.strong { width: 100%; background: var(--green); }
+
+.strength-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    min-width: 50px;
+}
+
+.strength-label.weak { color: var(--red); }
+.strength-label.fair { color: var(--orange); }
+.strength-label.good { color: var(--gold); }
+.strength-label.strong { color: var(--green); }
+
+/* Danger Zone */
+.danger-zone {
+    margin-top: 32px;
+    padding: 20px;
+    background: rgba(239, 68, 68, 0.06);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: var(--radius-md);
+}
+
+.danger-zone h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--red);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.danger-zone p {
+    font-size: 0.85rem;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+/* Delete Confirmation Dialog */
+.delete-confirm-dialog {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 13, 27, 0.92);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    border-radius: var(--radius-lg);
+    padding: 40px;
+}
+
+.delete-confirm-content {
+    text-align: center;
+    max-width: 340px;
+}
+
+.warning-icon {
+    font-size: 3rem;
+    color: var(--red);
+    margin-bottom: 16px;
+}
+
+.delete-confirm-content h4 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.delete-confirm-content p {
+    font-size: 0.9rem;
+    color: var(--gray-400);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.delete-confirm-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+    0% { transform: scale(1.05); }
+    100% { transform: scale(1.15); }
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(7, 13, 27, 0.85) 0%,
+        rgba(10, 22, 40, 0.7) 40%,
+        rgba(15, 31, 58, 0.5) 70%,
+        rgba(20, 42, 74, 0.4) 100%
+    );
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 120px 24px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.hero-text { max-width: 620px; }
+.hero-badge { margin-bottom: 20px; }
+
+.discount-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--blue-accent), var(--teal));
+    color: var(--white);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(26, 115, 232, 0); }
+}
+
+.hero-text h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.hero-text h1 em {
+    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--white), var(--blue-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-line { display: block; }
+
+.hero-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    margin-bottom: 32px;
+    max-width: 480px;
+}
+
+.hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-sidebar { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+.social-links { display: flex; flex-direction: column; gap: 14px; }
+
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    font-size: 0.9rem;
+    transition: all var(--transition-medium);
+    backdrop-filter: blur(10px);
+}
+
+.social-link:hover {
+    background: var(--blue-accent);
+    border-color: var(--blue-accent);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: var(--glow-blue);
+}
+
+/* Hero Bottom Card */
+.hero-bottom-card {
+    position: absolute;
+    bottom: 40px;
+    right: 80px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 14px 20px;
+    animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.hero-card-img {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.hero-card-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.hero-card-info .stars { display: flex; gap: 2px; margin-bottom: 4px; }
+.hero-card-info .stars i { color: var(--gold); font-size: 0.65rem; }
+
+.stat-number { font-size: 1.4rem; font-weight: 800; color: var(--white); line-height: 1; }
+.stat-text { font-size: 0.7rem; color: rgba(255, 255, 255, 0.7); line-height: 1.3; }
+
+/* ===== GLOBALLY TRUSTED SECTION ===== */
+.trusted-section {
+    position: relative;
+    padding: var(--section-padding);
+    text-align: center;
+    background: var(--gray-100);
+    color: var(--navy);
+    overflow: hidden;
+}
+
+.watermark-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(4rem, 12vw, 10rem);
+    font-weight: 900;
+    color: rgba(10, 22, 40, 0.04);
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+}
+
+.trusted-content {
+    position: relative;
+    z-index: 1;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.trusted-section .section-title { color: var(--navy); margin-bottom: 20px; }
+.trusted-section .section-description { color: var(--gray-600); margin-bottom: 36px; }
+
+.trusted-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ===== ACTIVITIES SECTION ===== */
+.activities-section {
+    padding: 80px 0 60px;
+    background: var(--navy-dark);
+}
+
+.activities-grid {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.activity-card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.activity-image {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+
+.activity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.activity-card:hover .activity-image img { transform: scale(1.08); }
+
+.activity-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(7, 13, 27, 0.85) 0%, rgba(7, 13, 27, 0.3) 40%, transparent 100%);
+}
+
+.activity-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    z-index: 2;
+}
+
+.activity-label span {
+    display: inline-block;
+    background: var(--blue-accent);
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    transition: all var(--transition-medium);
+}
+
+.activity-card:hover .activity-label span {
+    background: var(--blue-deep);
+    transform: translateY(-4px);
+    box-shadow: var(--glow-blue);
+}
+
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 40px; }
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+}
+
+.dot.active { background: var(--blue-accent); width: 28px; border-radius: 5px; }
+
+/* ===== BLOG SECTION ===== */
+.blog-section {
+    padding: var(--section-padding);
+    background: var(--white);
+    color: var(--navy);
+}
+
+.blog-header {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.blog-header .section-title { color: var(--navy); }
+
+.blog-nav-arrows { display: flex; gap: 10px; }
+
+.arrow-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--navy);
+    background: transparent;
+    color: var(--navy);
+    cursor: pointer;
+    transition: all var(--transition-medium);
+    font-size: 0.9rem;
+}
+
+.arrow-btn:hover { background: var(--navy); color: var(--white); transform: scale(1.05); }
+
+.blog-grid {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.blog-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    border: 1px solid var(--gray-200);
+}
+
+.blog-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+.blog-image { aspect-ratio: 16/10; overflow: hidden; }
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-image img { transform: scale(1.05); }
+
+.blog-info { padding: 24px; }
+
+.blog-meta { display: flex; gap: 16px; margin-bottom: 12px; }
+
+.blog-meta span {
+    font-size: 0.78rem;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.blog-meta i { font-size: 0.72rem; color: var(--blue-accent); }
+
+.blog-info h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.blog-info p {
+    font-size: 0.88rem;
+    color: var(--gray-500);
+    line-height: 1.7;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ===== MOMENTS SECTION ===== */
+.moments-section {
+    padding: var(--section-padding);
+    background: var(--gray-100);
+    color: var(--navy);
+}
+
+.moments-header {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 48px;
+}
+
+.moments-header .section-title { color: var(--navy); }
+
+.contact-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.08em;
+    border: 2px solid var(--navy);
+    padding: 10px 24px;
+    border-radius: 4px;
+    transition: all var(--transition-medium);
+}
+
+.contact-link:hover { background: var(--navy); color: var(--white); }
+
+.moments-carousel-wrapper {
+    position: relative;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.moments-carousel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    overflow: hidden;
+}
+
+.moment-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-medium);
+    cursor: pointer;
+    border: 1px solid var(--gray-200);
+}
+
+.moment-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+
+.moment-image { aspect-ratio: 4/3; overflow: hidden; }
+
+.moment-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.moment-card:hover .moment-image img { transform: scale(1.05); }
+
+.moment-info { padding: 20px; }
+
+.moment-info h4 { font-size: 1.05rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.moment-info > p { font-size: 0.85rem; color: var(--gray-500); margin-bottom: 12px; }
+
+.moment-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.price { font-size: 0.9rem; font-weight: 700; color: var(--navy); }
+
+.moment-rating { display: flex; align-items: center; gap: 3px; }
+.moment-rating i { color: var(--gold); font-size: 0.72rem; }
+.moment-rating span { font-size: 0.78rem; color: var(--gray-500); margin-left: 4px; }
+
+.see-more {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--blue-accent);
+    transition: color var(--transition-fast);
+}
+
+.see-more:hover { color: var(--blue-deep); }
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--blue-accent);
+    color: var(--white);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all var(--transition-medium);
+    box-shadow: var(--shadow-md);
+    z-index: 5;
+}
+
+.carousel-arrow:hover { background: var(--blue-deep); transform: translateY(-50%) scale(1.1); }
+
+.moments-arrow-right { right: -10px; }
+
+.moments-dots { margin-top: 40px; }
+.moments-dots .dot { background: rgba(10, 22, 40, 0.15); }
+.moments-dots .dot.active { background: var(--blue-accent); }
+
+/* ===== NEWSLETTER SECTION ===== */
+.newsletter-section {
+    position: relative;
+    padding: 100px 24px;
+    overflow: hidden;
+}
+
+.newsletter-bg { position: absolute; inset: 0; z-index: 0; }
+
+.newsletter-bg-img { width: 100%; height: 100%; object-fit: cover; }
+
+.newsletter-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(7, 13, 27, 0.88) 0%, rgba(10, 22, 40, 0.75) 50%, rgba(15, 31, 58, 0.65) 100%);
+}
+
+.newsletter-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.newsletter-content h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    margin-bottom: 32px;
+    line-height: 1.3;
+}
+
+.subscribe-form {
+    display: flex;
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.subscribe-form input[type="email"] {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    background: var(--white);
+    color: var(--navy);
+}
+
+.subscribe-form input[type="email"]::placeholder { color: var(--gray-400); }
+
+/* ===== SKELETON LOADING ===== */
+.skeleton-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.blog-section .skeleton-card {
+    background: var(--gray-100);
+    border-color: var(--gray-200);
+}
+
+.moments-section .skeleton-card {
+    background: var(--white);
+    border-color: var(--gray-200);
+}
+
+.skeleton-image {
+    aspect-ratio: 16/10;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.blog-section .skeleton-image,
+.moments-section .skeleton-image {
+    background: var(--gray-200);
+}
+
+.skeleton-image.tall { aspect-ratio: 3/4; }
+
+.skeleton-info { padding: 20px; }
+
+.skeleton-meta {
+    height: 12px;
+    width: 50%;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.skeleton-title {
+    height: 18px;
+    width: 80%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.skeleton-text {
+    height: 14px;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.skeleton-text.short { width: 60%; }
+
+.blog-section .skeleton-meta,
+.blog-section .skeleton-title,
+.blog-section .skeleton-text,
+.moments-section .skeleton-meta,
+.moments-section .skeleton-title,
+.moments-section .skeleton-text {
+    background: var(--gray-200);
+}
+
+/* Shimmer Animation */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 100%
+    );
+    animation: shimmer 1.8s ease-in-out infinite;
+}
+
+.blog-section .shimmer::after,
+.moments-section .shimmer::after {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        transparent 100%
+    );
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Empty & Error States */
+.empty-state,
+.error-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 24px;
+    color: var(--gray-500);
+}
+
+.blog-section .empty-state,
+.blog-section .error-state,
+.moments-section .empty-state,
+.moments-section .error-state {
+    color: var(--gray-500);
+}
+
+.empty-state i,
+.error-state i {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    opacity: 0.4;
+}
+
+.error-state i { color: var(--orange); }
+
+.empty-state p,
+.error-state p {
+    font-size: 1rem;
+    margin-bottom: 16px;
+}
+
+/* ===== FOOTER ===== */
+.footer-section {
+    background: var(--navy-dark);
+    padding: 70px 24px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.footer-content {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.footer-about p {
+    font-size: 0.88rem;
+    color: var(--gray-400);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    max-width: 340px;
+}
+
+.footer-social { display: flex; gap: 12px; }
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 0.85rem;
+    transition: all var(--transition-medium);
+}
+
+.footer-social a:hover {
+    background: var(--blue-accent);
+    border-color: var(--blue-accent);
+    transform: translateY(-3px);
+    box-shadow: var(--glow-blue);
+}
+
+.footer-col h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 0.03em;
+}
+
+.footer-col ul { display: flex; flex-direction: column; gap: 12px; }
+
+.footer-col ul a {
+    font-size: 0.88rem;
+    color: var(--gray-400);
+    transition: all var(--transition-fast);
+}
+
+.footer-col ul a:hover { color: var(--blue-light); padding-left: 4px; }
+
+.contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: var(--gray-400);
+}
+
+.contact-list li i { color: var(--blue-accent); margin-top: 3px; font-size: 0.85rem; }
+
+.footer-bottom {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 24px;
+}
+
+.footer-bottom p { font-size: 0.8rem; color: var(--gray-500); }
+
+/* ===== SCROLL ANIMATIONS ===== */
+[data-animate] {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-animate="fade-down"] { transform: translateY(-30px); }
+[data-animate="fade-left"] { transform: translateX(30px); }
+[data-animate="fade-right"] { transform: translateX(-30px); }
+[data-animate].visible { opacity: 1; transform: translate(0, 0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    .moments-carousel { grid-template-columns: repeat(2, 1fr); }
+    .footer-content { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    :root { --section-padding: 70px 0; }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(7, 13, 27, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        z-index: 1000;
+    }
+
+    .nav-links.open { transform: translateX(0); }
+    .nav-link { font-size: 1.2rem; }
+    .nav-buttons { display: none; }
+    .hamburger { display: flex; }
+
+    .hero-content { padding: 100px 24px 120px; flex-direction: column; }
+    .hero-text h1 { font-size: 2.4rem; }
+    .hero-sidebar { display: none; }
+    .hero-bottom-card { right: 24px; bottom: 24px; }
+
+    .activities-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .moments-carousel {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .moments-arrow-right { display: none; }
+    .footer-content { grid-template-columns: 1fr; gap: 36px; }
+
+    .subscribe-form { flex-direction: column; }
+    .btn-subscribe { border-radius: 0 0 6px 6px; }
+
+    .modal-container { padding: 28px 20px; }
+
+    .profile-modal-container,
+    .booking-modal-container,
+    .auth-modal-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 { font-size: 2rem; }
+    .hero-bottom-card { right: 16px; left: 16px; bottom: 16px; }
+
+    .blog-header,
+    .moments-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    .nav-user-name { display: none; }
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--navy-dark); }
+::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue-accent); }
+
+/* Modal scrollbar */
+.modal-container::-webkit-scrollbar { width: 6px; }
+.modal-container::-webkit-scrollbar-track { background: transparent; }
+.modal-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 3px; }
+
+/* ===== SELECTION ===== */
+::selection { background: rgba(26, 115, 232, 0.3); color: var(--white); }
+
+/* ===== CROPPER.JS OVERRIDES ===== */
+.cropper-view-box,
+.cropper-face {
+    border-radius: 50%;
+}
+
+.cropper-view-box {
+    outline: 2px solid var(--blue-accent);
+    outline-color: var(--blue-accent);
+}
+
+.cropper-point {
+    background-color: var(--blue-accent);
+}
+
+.cropper-line {
+    background-color: var(--blue-accent);
+}
+
+==================== script.js ====================
+/* ==========================================
+   DivingClub - Main Application Script
+   Orchestrates UI interactions, animations,
+   and coordinates with backend modules.
+   ========================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    // ===== TOAST NOTIFICATION SYSTEM =====
+    window.Toast = {
+        container: document.getElementById('toast-container'),
+
+        /**
+         * Show a toast notification
+         * @param {string} message - The message to display
+         * @param {string} type - 'success' | 'error' | 'info'
+         * @param {number} duration - Duration in ms (default: 4000)
+         */
+        show(message, type = 'info', duration = 4000) {
+            if (!this.container) return;
+
+            const icons = {
+                success: 'fas fa-check-circle',
+                error: 'fas fa-exclamation-circle',
+                info: 'fas fa-info-circle'
+            };
+
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <i class="toast-icon ${icons[type] || icons.info}"></i>
+                <span class="toast-message">${message}</span>
+                <button class="toast-close" aria-label="Close notification">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            this.container.appendChild(toast);
+
+            // Trigger show animation
+            requestAnimationFrame(() => {
+                toast.classList.add('show');
+            });
+
+            // Close button handler
+            const closeBtn = toast.querySelector('.toast-close');
+            closeBtn.addEventListener('click', () => this.dismiss(toast));
+
+            // Auto dismiss
+            const timer = setTimeout(() => this.dismiss(toast), duration);
+            toast._timer = timer;
+        },
+
+        /**
+         * Dismiss a toast
+         */
+        dismiss(toast) {
+            if (!toast || toast._dismissed) return;
+            toast._dismissed = true;
+            clearTimeout(toast._timer);
+            toast.classList.remove('show');
+            toast.classList.add('hiding');
+            setTimeout(() => {
+                if (toast.parentNode) toast.parentNode.removeChild(toast);
+            }, 400);
+        }
+    };
+
+    // ===== HEADER SCROLL EFFECT =====
+    const header = document.getElementById('main-header');
+
+    const handleScroll = () => {
+        if (window.scrollY > 60) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // ===== MOBILE MENU =====
+    const hamburger = document.getElementById('hamburger-btn');
+    const navLinks = document.getElementById('nav-links');
+    const navLinkItems = document.querySelectorAll('.nav-link');
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('open');
+            document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+        });
+
+        navLinkItems.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+    }
+
+    // ===== ACTIVE NAV LINK ON SCROLL =====
+    const sections = document.querySelectorAll('section[id]');
+
+    const updateActiveNav = () => {
+        const scrollY = window.scrollY + 150;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                navLinkItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    };
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    // ===== SCROLL REVEAL ANIMATIONS =====
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80px 0px',
+        threshold: 0.1
+    };
+
+    const observerCallback = (entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const delay = entry.target.getAttribute('data-delay') || 0;
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, parseInt(delay));
+            }
+        });
+    };
+
+    window.scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+        window.scrollObserver.observe(el);
+    });
+
+    // ===== USER DROPDOWN =====
+    const navUserDropdown = document.getElementById('nav-user-dropdown');
+    const navUserBtn = document.getElementById('nav-user-btn');
+
+    if (navUserBtn && navUserDropdown) {
+        navUserBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navUserDropdown.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navUserDropdown.contains(e.target)) {
+                navUserDropdown.classList.remove('open');
+            }
+        });
+    }
+
+    // ===== MODAL MANAGEMENT =====
+    window.ModalManager = {
+        /**
+         * Show a modal by ID
+         */
+        show(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        },
+
+        /**
+         * Hide a modal by ID
+         */
+        hide(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            modal.classList.remove('active');
+            // Only restore scroll if no other modals are open
+            const anyOpen = document.querySelector('.modal-overlay.active');
+            if (!anyOpen) {
+                document.body.style.overflow = '';
+            }
+        },
+
+        /**
+         * Hide all modals
+         */
+        hideAll() {
+            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+        }
+    };
+
+    // Close modals when clicking overlay
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // Close modal buttons
+    document.querySelectorAll('.modal-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modal = btn.closest('.modal-overlay');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+
+    // ESC key to close modals
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            ModalManager.hideAll();
+        }
+    });
+
+    // ===== BOOK NOW BUTTONS =====
+    document.querySelectorAll('.book-now-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            ModalManager.show('booking-modal');
+
+            // Pre-fill email/name if logged in
+            if (typeof Auth !== 'undefined' && Auth.currentUser) {
+                const nameInput = document.getElementById('booking-name');
+                const emailInput = document.getElementById('booking-email');
+                if (nameInput && Auth.currentProfile?.full_name) {
+                    nameInput.value = Auth.currentProfile.full_name;
+                }
+                if (emailInput && Auth.currentUser.email) {
+                    emailInput.value = Auth.currentUser.email;
+                }
+            }
+        });
+    });
+
+    // ===== CONTACT US BUTTONS =====
+    document.querySelectorAll('.contact-us-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            ModalManager.show('booking-modal');
+
+            // Set booking type to general
+            const typeSelect = document.getElementById('booking-type');
+            if (typeSelect) typeSelect.value = 'general';
+        });
+    });
+
+    // ===== LOGIN BUTTON =====
+    const navLoginBtn = document.getElementById('nav-login-btn');
+    if (navLoginBtn) {
+        navLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (typeof Auth !== 'undefined') {
+                Auth.showAuthModal('login');
+            } else {
+                ModalManager.show('auth-modal');
+            }
+        });
+    }
+
+    // ===== BOOKING FORM SUBMISSION =====
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('booking-submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+
+            // Show loading
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline-flex';
+
+            const formData = {
+                name: document.getElementById('booking-name').value.trim(),
+                email: document.getElementById('booking-email').value.trim(),
+                phone: document.getElementById('booking-phone').value.trim(),
+                booking_type: document.getElementById('booking-type').value,
+                message: document.getElementById('booking-message').value.trim()
+            };
+
+            // Validate
+            if (!formData.name || !formData.email) {
+                Toast.show('Please fill in all required fields.', 'error');
+                submitBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoader.style.display = 'none';
+                return;
+            }
+
+            if (typeof DataService !== 'undefined') {
+                const result = await DataService.submitBooking(formData);
+                if (result.success) {
+                    bookingForm.reset();
+                    ModalManager.hide('booking-modal');
+                }
+            } else {
+                Toast.show('Booking submitted! (Demo mode)', 'success');
+                bookingForm.reset();
+                ModalManager.hide('booking-modal');
+            }
+
+            // Reset button
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+        });
+    }
+
+    // ===== NEWSLETTER SUBSCRIPTION =====
+    const subscribeForm = document.getElementById('subscribe-form');
+    if (subscribeForm) {
+        subscribeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const emailInput = document.getElementById('email-input');
+            const submitBtn = document.getElementById('subscribe-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnLoader = submitBtn.querySelector('.btn-loader');
+            const email = emailInput.value.trim();
+
+            if (!email) {
+                shakeElement(emailInput);
+                return;
+            }
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                shakeElement(emailInput);
+                Toast.show('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Show loading
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoader.style.display = 'inline-flex';
+
+            if (typeof DataService !== 'undefined') {
+                const result = await DataService.subscribeNewsletter(email);
+                if (result.success) {
+                    emailInput.value = '';
+                }
+            } else {
+                Toast.show('Subscribed successfully! (Demo mode)', 'success');
+                emailInput.value = '';
+            }
+
+            // Reset button
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoader.style.display = 'none';
+        });
+    }
+
+    // ===== PASSWORD TOGGLE =====
+    document.querySelectorAll('.toggle-password').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const input = btn.previousElementSibling || btn.parentElement.querySelector('input[type="password"], input[type="text"]');
+            if (!input) return;
+
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        });
+    });
+
+    // ===== PASSWORD STRENGTH INDICATOR =====
+    const signupPassword = document.getElementById('signup-password');
+    const strengthFill = document.getElementById('strength-fill');
+    const strengthLabel = document.getElementById('strength-label');
+
+    if (signupPassword && strengthFill && strengthLabel) {
+        signupPassword.addEventListener('input', () => {
+            const password = signupPassword.value;
+            const strength = calculatePasswordStrength(password);
+
+            // Remove all strength classes
+            strengthFill.className = 'strength-fill';
+            strengthLabel.className = 'strength-label';
+
+            if (password.length === 0) {
+                strengthLabel.textContent = '';
+                return;
+            }
+
+            strengthFill.classList.add(strength.level);
+            strengthLabel.classList.add(strength.level);
+            strengthLabel.textContent = strength.label;
+        });
+    }
+
+    function calculatePasswordStrength(password) {
+        let score = 0;
+        if (password.length >= 6) score++;
+        if (password.length >= 8) score++;
+        if (/[A-Z]/.test(password)) score++;
+        if (/[0-9]/.test(password)) score++;
+        if (/[^A-Za-z0-9]/.test(password)) score++;
+
+        if (score <= 1) return { level: 'weak', label: 'Weak' };
+        if (score <= 2) return { level: 'fair', label: 'Fair' };
+        if (score <= 3) return { level: 'good', label: 'Good' };
+        return { level: 'strong', label: 'Strong' };
+    }
+
+    // ===== AUTH TAB SWITCHING =====
+    document.querySelectorAll('.auth-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tab = btn.dataset.tab;
+            switchAuthTab(tab);
+        });
+    });
+
+    document.querySelectorAll('[data-switch-tab]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const tab = link.dataset.switchTab;
+            switchAuthTab(tab);
+        });
+    });
+
+    function switchAuthTab(tab) {
+        // Update tab buttons
+        document.querySelectorAll('.auth-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelector(`.auth-tab-btn[data-tab="${tab}"]`)?.classList.add('active');
+
+        // Update tab content
+        document.querySelectorAll('.auth-tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(`auth-${tab}-tab`)?.classList.add('active');
+    }
+
+    // ===== BLOG NAVIGATION =====
+    const blogPrev = document.getElementById('blog-prev-btn');
+    const blogNext = document.getElementById('blog-next-btn');
+    const blogGrid = document.getElementById('blog-grid');
+
+    if (blogPrev && blogNext && blogGrid) {
+        blogNext.addEventListener('click', () => {
+            animateGridCards(blogGrid);
+        });
+
+        blogPrev.addEventListener('click', () => {
+            animateGridCards(blogGrid);
+        });
+    }
+
+    // ===== MOMENTS CAROUSEL =====
+    const momentsNext = document.getElementById('moments-next-btn');
+    const momentsCarousel = document.getElementById('moments-carousel');
+
+    if (momentsNext && momentsCarousel) {
+        momentsNext.addEventListener('click', () => {
+            animateGridCards(momentsCarousel);
+        });
+    }
+
+    function animateGridCards(container) {
+        const cards = container.querySelectorAll('.blog-card, .moment-card');
+        cards.forEach(card => {
+            card.style.transition = 'all 0.4s ease';
+            card.style.transform = 'translateY(10px)';
+            card.style.opacity = '0.5';
+            setTimeout(() => {
+                card.style.transform = '';
+                card.style.opacity = '';
+            }, 400);
+        });
+    }
+
+    // ===== CAROUSEL DOTS INTERACTION =====
+    document.querySelectorAll('.carousel-dots').forEach(group => {
+        const dots = group.querySelectorAll('.dot');
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                dots.forEach(d => d.classList.remove('active'));
+                dot.classList.add('active');
+            });
+        });
+    });
+
+    // ===== PARALLAX EFFECTS =====
+    const heroImg = document.querySelector('.hero-bg-img');
+
+    const handleParallax = () => {
+        const scrollY = window.scrollY;
+        if (heroImg && scrollY < window.innerHeight) {
+            heroImg.style.transform = `scale(${1.05 + scrollY * 0.0002}) translateY(${scrollY * 0.15}px)`;
+        }
+    };
+
+    window.addEventListener('scroll', handleParallax, { passive: true });
+
+    // ===== HERO TEXT REVEAL =====
+    const heroLines = document.querySelectorAll('.hero-line');
+    heroLines.forEach((line, index) => {
+        line.style.opacity = '0';
+        line.style.transform = 'translateY(20px)';
+        line.style.transition = `all 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${0.3 + index * 0.15}s`;
+
+        setTimeout(() => {
+            line.style.opacity = '1';
+            line.style.transform = 'translateY(0)';
+        }, 100);
+    });
+
+    // ===== WATERMARK PARALLAX =====
+    const watermark = document.querySelector('.watermark-text');
+    if (watermark) {
+        window.addEventListener('scroll', () => {
+            const section = watermark.parentElement;
+            const rect = section.getBoundingClientRect();
+            const scrollPercent = -rect.top / window.innerHeight;
+            watermark.style.transform = `translate(-50%, -50%) translateX(${scrollPercent * 50}px)`;
+        }, { passive: true });
+    }
+
+    // ===== SMOOTH SCROLL =====
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            // Don't prevent default if it's a trigger button
+            if (this.classList.contains('book-now-trigger') ||
+                this.classList.contains('contact-us-trigger')) return;
+
+            e.preventDefault();
+            const target = document.querySelector(targetId);
+            if (target) {
+                const headerHeight = header.offsetHeight;
+                window.scrollTo({
+                    top: target.offsetTop - headerHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // ===== UTILITY FUNCTIONS =====
+    function shakeElement(el) {
+        el.style.animation = 'none';
+        el.offsetHeight;
+        el.style.animation = 'shake 0.5s ease';
+        el.style.borderColor = '#ef4444';
+
+        setTimeout(() => {
+            el.style.borderColor = '';
+            el.style.animation = '';
+        }, 1500);
+    }
+
+    // Add shake keyframes dynamically
+    const shakeStyle = document.createElement('style');
+    shakeStyle.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+    `;
+    document.head.appendChild(shakeStyle);
+
+    console.log('🤿 DivingClub application initialized successfully!');
+});
+
+==================== js/data.js ====================
+/* ==========================================
+   DivingClub - Data Service Module
+   Fetches & renders all dynamic content from Supabase
+   ========================================== */
+
+const DataService = {
+    // Cache for loaded data
+    cache: {
+        blogPosts: [],
+        activities: [],
+        moments: [],
+        stats: {}
+    },
+
+    // Loading state tracking
+    loading: {
+        blog: false,
+        activities: false,
+        moments: false,
+        stats: false
+    },
+
+    /**
+     * Initialize all data loading
+     */
+    async init() {
+        if (!isSupabaseConfigured()) {
+            console.warn('[DataService] Supabase not configured. Loading fallback content.');
+            this.loadFallbackContent();
+            return;
+        }
+
+        try {
+            // Load all data in parallel for performance
+            await Promise.allSettled([
+                this.loadBlogPosts(),
+                this.loadActivities(),
+                this.loadMoments(),
+                this.loadStats()
+            ]);
+
+            console.log('[DataService] All data loaded successfully.');
+        } catch (error) {
+            console.error('[DataService] Initialization error:', error);
+        }
+    },
+
+    // ===== BLOG POSTS =====
+
+    /**
+     * Fetch blog posts from Supabase and render them
+     */
+    async loadBlogPosts() {
+        if (this.loading.blog) return;
+        this.loading.blog = true;
+
+        const container = document.getElementById('blog-grid');
+        if (!container) {
+            this.loading.blog = false;
+            return;
+        }
+
+        try {
+            // Show skeleton loading
+            this.showSkeletonLoading(container, 'blog', 3);
+
+            const { data, error } = await supabase
+                .from('blog_posts')
+                .select('*')
+                .order('published_at', { ascending: false })
+                .limit(6);
+
+            if (error) throw error;
+
+            this.cache.blogPosts = data || [];
+            this.renderBlogPosts(container, this.cache.blogPosts);
+        } catch (error) {
+            console.error('[DataService] Error loading blog posts:', error);
+            this.showErrorState(container, 'blog posts');
+        } finally {
+            this.loading.blog = false;
+        }
+    },
+
+    /**
+     * Render blog post cards into the container
+     */
+    renderBlogPosts(container, posts) {
+        if (!container || !posts.length) {
+            if (container) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-newspaper"></i>
+                        <p>No blog posts yet. Check back soon!</p>
+                    </div>`;
+            }
+            return;
+        }
+
+        container.innerHTML = posts.map((post, index) => {
+            const publishedDate = post.published_at
+                ? new Date(post.published_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                : 'Recently';
+
+            return `
+                <article class="blog-card ${index === 0 ? 'blog-card-featured' : ''}" 
+                         data-animate="fade-up" data-delay="${index * 150}"
+                         data-id="${post.id}">
+                    <div class="blog-image">
+                        <img src="${this.sanitizeUrl(post.image_url) || 'images/blog_1.jpg'}" 
+                             alt="${this.escapeHtml(post.title)}" 
+                             loading="lazy"
+                             onerror="this.src='images/blog_1.jpg'">
+                    </div>
+                    <div class="blog-info">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar"></i> ${publishedDate}</span>
+                            <span><i class="far fa-clock"></i> ${post.read_time || 5} min read</span>
+                        </div>
+                        <h3>${this.escapeHtml(post.title)}</h3>
+                        <p>${this.escapeHtml(post.excerpt || '')}</p>
+                    </div>
+                </article>`;
+        }).join('');
+
+        // Re-observe for scroll animations
+        this.reObserveAnimations(container);
+    },
+
+    // ===== ACTIVITIES =====
+
+    /**
+     * Fetch activities from Supabase and render them
+     */
+    async loadActivities() {
+        if (this.loading.activities) return;
+        this.loading.activities = true;
+
+        const container = document.getElementById('activities-grid');
+        if (!container) {
+            this.loading.activities = false;
+            return;
+        }
+
+        try {
+            this.showSkeletonLoading(container, 'activity', 3);
+
+            const { data, error } = await supabase
+                .from('activities')
+                .select('*')
+                .eq('is_active', true)
+                .order('sort_order', { ascending: true });
+
+            if (error) throw error;
+
+            this.cache.activities = data || [];
+            this.renderActivities(container, this.cache.activities);
+        } catch (error) {
+            console.error('[DataService] Error loading activities:', error);
+            this.showErrorState(container, 'activities');
+        } finally {
+            this.loading.activities = false;
+        }
+    },
+
+    /**
+     * Render activity cards
+     */
+    renderActivities(container, activities) {
+        if (!container || !activities.length) {
+            if (container) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-water"></i>
+                        <p>No activities available right now.</p>
+                    </div>`;
+            }
+            return;
+        }
+
+        container.innerHTML = activities.map((activity, index) => `
+            <div class="activity-card" data-animate="fade-up" data-delay="${index * 200}" data-id="${activity.id}">
+                <div class="activity-image">
+                    <img src="${this.sanitizeUrl(activity.image_url) || 'images/diving_activity_1.jpg'}" 
+                         alt="${this.escapeHtml(activity.title)}" 
+                         loading="lazy"
+                         onerror="this.src='images/diving_activity_1.jpg'">
+                    <div class="activity-overlay"></div>
+                </div>
+                <div class="activity-label">
+                    <span>${this.escapeHtml(activity.title)}</span>
+                </div>
+            </div>
+        `).join('');
+
+        this.reObserveAnimations(container);
+        this.initTiltEffect(container);
+    },
+
+    // ===== MOMENTS =====
+
+    /**
+     * Fetch diving moments from Supabase and render them
+     */
+    async loadMoments() {
+        if (this.loading.moments) return;
+        this.loading.moments = true;
+
+        const container = document.getElementById('moments-carousel');
+        if (!container) {
+            this.loading.moments = false;
+            return;
+        }
+
+        try {
+            this.showSkeletonLoading(container, 'moment', 3);
+
+            const { data, error } = await supabase
+                .from('moments')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            this.cache.moments = data || [];
+            this.renderMoments(container, this.cache.moments);
+        } catch (error) {
+            console.error('[DataService] Error loading moments:', error);
+            this.showErrorState(container, 'moments');
+        } finally {
+            this.loading.moments = false;
+        }
+    },
+
+    /**
+     * Render moment cards
+     */
+    renderMoments(container, moments) {
+        if (!container || !moments.length) {
+            if (container) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-camera"></i>
+                        <p>No diving moments to show yet.</p>
+                    </div>`;
+            }
+            return;
+        }
+
+        container.innerHTML = moments.map((moment, index) => {
+            const fullStars = Math.floor(moment.rating || 0);
+            const hasHalf = (moment.rating || 0) % 1 >= 0.3;
+            let starsHtml = '';
+            for (let i = 0; i < fullStars; i++) starsHtml += '<i class="fas fa-star"></i>';
+            if (hasHalf) starsHtml += '<i class="fas fa-star-half-alt"></i>';
+            for (let i = fullStars + (hasHalf ? 1 : 0); i < 5; i++) starsHtml += '<i class="far fa-star"></i>';
+
+            return `
+                <div class="moment-card" data-animate="fade-up" data-delay="${index * 200}" data-id="${moment.id}">
+                    <div class="moment-image">
+                        <img src="${this.sanitizeUrl(moment.image_url) || 'images/moment_1.jpg'}" 
+                             alt="${this.escapeHtml(moment.title)}" 
+                             loading="lazy"
+                             onerror="this.src='images/moment_1.jpg'">
+                    </div>
+                    <div class="moment-info">
+                        <h4>${this.escapeHtml(moment.title)}</h4>
+                        <p>${this.escapeHtml(moment.description || '')}</p>
+                        <div class="moment-details">
+                            <span class="price">From $${Number(moment.price || 0).toFixed(0)}</span>
+                            <div class="moment-rating">
+                                ${starsHtml}
+                                <span>${Number(moment.rating || 0).toFixed(1)}(${moment.review_count || 0})</span>
+                            </div>
+                        </div>
+                        <a href="#" class="see-more" data-moment-id="${moment.id}">See More →</a>
+                    </div>
+                </div>`;
+        }).join('');
+
+        this.reObserveAnimations(container);
+    },
+
+    // ===== SITE STATS =====
+
+    /**
+     * Fetch site statistics and update counters
+     */
+    async loadStats() {
+        if (this.loading.stats) return;
+        this.loading.stats = true;
+
+        try {
+            const { data, error } = await supabase
+                .from('site_stats')
+                .select('*');
+
+            if (error) throw error;
+
+            if (data) {
+                data.forEach(stat => {
+                    this.cache.stats[stat.stat_key] = stat.stat_value;
+                });
+                this.renderStats();
+            }
+        } catch (error) {
+            console.error('[DataService] Error loading stats:', error);
+        } finally {
+            this.loading.stats = false;
+        }
+    },
+
+    /**
+     * Render stat counters on the page
+     */
+    renderStats() {
+        const membersEl = document.getElementById('stat-members');
+        if (membersEl) {
+            const count = this.cache.stats.members_count || 500;
+            this.animateCounter(membersEl, 0, count, 2000);
+        }
+    },
+
+    // ===== NEWSLETTER SUBSCRIPTION =====
+
+    /**
+     * Subscribe email to newsletter
+     */
+    async subscribeNewsletter(email) {
+        if (!isSupabaseConfigured()) {
+            Toast.show('Demo mode: Subscription simulated!', 'info');
+            return { success: true };
+        }
+
+        try {
+            // Validate email format
+            if (!this.isValidEmail(email)) {
+                Toast.show('Please enter a valid email address.', 'error');
+                return { success: false };
+            }
+
+            const { data, error } = await supabase
+                .from('subscribers')
+                .insert([{ email: email.toLowerCase().trim() }])
+                .select();
+
+            if (error) {
+                if (error.code === '23505') {
+                    Toast.show('You\'re already subscribed! 🎉', 'info');
+                    return { success: true };
+                }
+                throw error;
+            }
+
+            Toast.show('Successfully subscribed! Welcome aboard! 🤿', 'success');
+            return { success: true, data };
+        } catch (error) {
+            console.error('[DataService] Subscription error:', error);
+            Toast.show('Subscription failed. Please try again.', 'error');
+            return { success: false, error };
+        }
+    },
+
+    // ===== BOOKING SUBMISSION =====
+
+    /**
+     * Submit a booking/contact request
+     */
+    async submitBooking(bookingData) {
+        if (!isSupabaseConfigured()) {
+            Toast.show('Demo mode: Booking simulated!', 'info');
+            return { success: true };
+        }
+
+        try {
+            // Validate required fields
+            if (!bookingData.name || !bookingData.email) {
+                Toast.show('Please fill in all required fields.', 'error');
+                return { success: false };
+            }
+
+            // Attach current user ID if logged in
+            if (Auth.currentUser) {
+                bookingData.user_id = Auth.currentUser.id;
+            }
+
+            const { data, error } = await supabase
+                .from('bookings')
+                .insert([bookingData])
+                .select();
+
+            if (error) throw error;
+
+            Toast.show('Booking submitted successfully! We\'ll contact you soon. 🎉', 'success');
+            return { success: true, data };
+        } catch (error) {
+            console.error('[DataService] Booking error:', error);
+            Toast.show('Booking failed. Please try again.', 'error');
+            return { success: false, error };
+        }
+    },
+
+    // ===== UTILITY METHODS =====
+
+    /**
+     * Show skeleton loading placeholders
+     */
+    showSkeletonLoading(container, type, count) {
+        if (!container) return;
+
+        let skeletonHtml = '';
+        for (let i = 0; i < count; i++) {
+            if (type === 'blog') {
+                skeletonHtml += `
+                    <div class="skeleton-card blog-skeleton">
+                        <div class="skeleton-image shimmer"></div>
+                        <div class="skeleton-info">
+                            <div class="skeleton-meta shimmer"></div>
+                            <div class="skeleton-title shimmer"></div>
+                            <div class="skeleton-text shimmer"></div>
+                            <div class="skeleton-text short shimmer"></div>
+                        </div>
+                    </div>`;
+            } else if (type === 'activity') {
+                skeletonHtml += `
+                    <div class="skeleton-card activity-skeleton">
+                        <div class="skeleton-image tall shimmer"></div>
+                    </div>`;
+            } else if (type === 'moment') {
+                skeletonHtml += `
+                    <div class="skeleton-card moment-skeleton">
+                        <div class="skeleton-image shimmer"></div>
+                        <div class="skeleton-info">
+                            <div class="skeleton-title shimmer"></div>
+                            <div class="skeleton-text shimmer"></div>
+                            <div class="skeleton-meta shimmer"></div>
+                        </div>
+                    </div>`;
+            }
+        }
+        container.innerHTML = skeletonHtml;
+    },
+
+    /**
+     * Show error state in a container
+     */
+    showErrorState(container, contentType) {
+        if (!container) return;
+        container.innerHTML = `
+            <div class="error-state">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Unable to load ${contentType}. Please try again later.</p>
+                <button class="btn btn-primary btn-sm" onclick="DataService.init()">Retry</button>
+            </div>`;
+    },
+
+    /**
+     * Re-observe elements for scroll animations after dynamic rendering
+     */
+    reObserveAnimations(container) {
+        if (!container || !window.scrollObserver) return;
+
+        container.querySelectorAll('[data-animate]').forEach(el => {
+            el.classList.remove('visible');
+            window.scrollObserver.observe(el);
+        });
+    },
+
+    /**
+     * Re-init tilt effect on activity cards
+     */
+    initTiltEffect(container) {
+        if (!container) return;
+
+        container.querySelectorAll('.activity-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    },
+
+    /**
+     * Animate a counter from start to end
+     */
+    animateCounter(element, start, end, duration) {
+        if (!element) return;
+        let startTime = null;
+
+        function step(timestamp) {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(start + (end - start) * easeOut);
+            element.textContent = value + '+';
+            if (progress < 1) requestAnimationFrame(step);
+        }
+
+        requestAnimationFrame(step);
+    },
+
+    /**
+     * Validate email format
+     */
+    isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    },
+
+    /**
+     * Escape HTML to prevent XSS
+     */
+    escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    },
+
+    /**
+     * Sanitize URL to prevent XSS
+     */
+    sanitizeUrl(url) {
+        if (!url) return '';
+        // Allow relative paths and https URLs
+        if (url.startsWith('images/') || url.startsWith('https://') || url.startsWith('http://')) {
+            return url;
+        }
+        return '';
+    },
+
+    /**
+     * Load fallback/demo content when Supabase is not configured.
+     * Uses local images and hardcoded demo data so the site looks complete.
+     */
+    loadFallbackContent() {
+        // ── Fallback Blog Posts ──
+        const fallbackBlogs = [
+            {
+                id: 'demo-1',
+                title: 'Improve Your Lung Capacity',
+                excerpt: 'Diving allows you to explore the underwater world with every breath. But the key to extending your dive time is improving your lung capacity through proper breathing techniques.',
+                image_url: 'images/blog_1.jpg',
+                read_time: 5,
+                published_at: '2025-02-13'
+            },
+            {
+                id: 'demo-2',
+                title: 'Divingclub Just The Essential Tips To Start Your Journey',
+                excerpt: "If you've always been captivated by the serenity of the underwater world, diving might be the perfect way to explore it. Unlike other sports, diving requires specific preparation.",
+                image_url: 'images/blog_2.jpg',
+                read_time: 5,
+                published_at: '2025-02-13'
+            },
+            {
+                id: 'demo-3',
+                title: "Why It's More Than Just A Sport The Benefits Of Divingclub",
+                excerpt: "Diving is often celebrated for its thrilling and meditative qualities, but it's more than just a way to explore underwater worlds. It offers numerous health benefits.",
+                image_url: 'images/blog_3.jpg',
+                read_time: 5,
+                published_at: '2025-02-15'
+            }
+        ];
+
+        const blogGrid = document.getElementById('blog-grid');
+        if (blogGrid) {
+            this.cache.blogPosts = fallbackBlogs;
+            this.renderBlogPosts(blogGrid, fallbackBlogs);
+        }
+
+        // ── Fallback Activities ──
+        const fallbackActivities = [
+            { id: 'demo-a1', title: 'LEARN TO DIVING', image_url: 'images/diving_activity_1.jpg', category: 'beginner' },
+            { id: 'demo-a2', title: 'COURSES FOR DIVERS', image_url: 'images/diving_activity_2.jpg', category: 'intermediate' },
+            { id: 'demo-a3', title: 'LEARN TO DIVE', image_url: 'images/diving_activity_3.jpg', category: 'advanced' }
+        ];
+
+        const activitiesGrid = document.getElementById('activities-grid');
+        if (activitiesGrid) {
+            this.cache.activities = fallbackActivities;
+            this.renderActivities(activitiesGrid, fallbackActivities);
+        }
+
+        // ── Fallback Moments ──
+        const fallbackMoments = [
+            { id: 'demo-m1', title: 'Discover Scuba Diving', description: 'Take Your First Breaths Under Water', image_url: 'images/moment_1.jpg', price: 180, rating: 4.5, review_count: 4 },
+            { id: 'demo-m2', title: 'Advanced Open Water', description: 'Explore Deeper Underwater Worlds', image_url: 'images/moment_2.jpg', price: 250, rating: 5.0, review_count: 8 },
+            { id: 'demo-m3', title: 'Night Diving Experience', description: 'Discover The Ocean After Dark', image_url: 'images/moment_3.jpg', price: 320, rating: 4.8, review_count: 12 }
+        ];
+
+        const momentsCarousel = document.getElementById('moments-carousel');
+        if (momentsCarousel) {
+            this.cache.moments = fallbackMoments;
+            this.renderMoments(momentsCarousel, fallbackMoments);
+        }
+
+        // ── Fallback Stats ──
+        this.cache.stats = { members_count: 500, dives_completed: 2500, courses_offered: 15 };
+        this.renderStats();
+
+        console.log('[DataService] Fallback content rendered successfully.');
+    }
+};
+
+// Initialize data loading when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    // Slight delay to ensure Supabase client is initialized
+    setTimeout(() => {
+        DataService.init();
+    }, 100);
+});
+
+==================== js/realtime.js ====================
+/**
+ * ============================================================================
+ * Realtime Module — DivingClub
+ * ============================================================================
+ *
+ * Manages Supabase Realtime subscriptions for live data synchronisation.
+ *
+ * Each database table of interest gets its own dedicated channel so that
+ * subscriptions can be managed (and torn down) independently.
+ *
+ * Dependencies:
+ *   - Global `supabase` client  (initialised elsewhere)
+ *   - Global `isSupabaseConfigured` helper
+ *   - Global `DataService` object (data-service.js) — for re-rendering data
+ *   - Global `Auth` object        (auth.js)         — for current user context
+ *   - Global `Toast` object       (toast.js)        — for notifications
+ *
+ * All public methods live on the `Realtime` global.
+ * ============================================================================
+ */
+
+const Realtime = {
+
+  /* ── State ─────────────────────────────────────────────────────────────── */
+
+  /** @type {import('@supabase/supabase-js').RealtimeChannel[]} Active channel refs */
+  channels: [],
+
+  /* ── Public API ────────────────────────────────────────────────────────── */
+
+  /**
+   * Bootstrap all Realtime subscriptions.
+   * Only runs when Supabase is properly configured.
+   */
+  init() {
+    if (typeof isSupabaseConfigured !== 'function' || !isSupabaseConfigured()) {
+      console.warn('[Realtime] Supabase is not configured — skipping subscriptions.');
+      return;
+    }
+
+    this.subscribeToBlogPosts();
+    this.subscribeToActivities();
+    this.subscribeToMoments();
+    this.subscribeToSubscribers();
+    this.subscribeToStats();
+    this.subscribeToProfile();
+
+    console.log('[Realtime] All channels subscribed.');
+  },
+
+  /* ── Blog Posts ─────────────────────────────────────────────────────────── */
+
+  /**
+   * Subscribe to INSERT, UPDATE, and DELETE events on the `blog_posts` table.
+   * Re-renders the blog post list on any change.
+   */
+  subscribeToBlogPosts() {
+    const channel = supabase
+      .channel('realtime-blog-posts')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'blog_posts' },
+        (payload) => {
+          console.log('[Realtime] blog_posts INSERT:', payload);
+          this._safeCall(() => DataService.loadBlogPosts());
+        },
+      )
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'blog_posts' },
+        (payload) => {
+          console.log('[Realtime] blog_posts UPDATE:', payload);
+          this._safeCall(() => DataService.loadBlogPosts());
+        },
+      )
+      .on(
+        'postgres_changes',
+        { event: 'DELETE', schema: 'public', table: 'blog_posts' },
+        (payload) => {
+          console.log('[Realtime] blog_posts DELETE:', payload);
+          this._safeCall(() => DataService.loadBlogPosts());
+        },
+      )
+      .subscribe((status) => {
+        this._logChannelStatus('blog_posts', status);
+      });
+
+    this.channels.push(channel);
+  },
+
+  /* ── Activities ────────────────────────────────────────────────────────── */
+
+  /**
+   * Subscribe to changes on the `activities` table.
+   */
+  subscribeToActivities() {
+    const channel = supabase
+      .channel('realtime-activities')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'activities' },
+        (payload) => {
+          console.log('[Realtime] activities change:', payload.eventType);
+          this._safeCall(() => DataService.loadActivities());
+        },
+      )
+      .subscribe((status) => {
+        this._logChannelStatus('activities', status);
+      });
+
+    this.channels.push(channel);
+  },
+
+  /* ── Moments ───────────────────────────────────────────────────────────── */
+
+  /**
+   * Subscribe to changes on the `moments` table.
+   */
+  subscribeToMoments() {
+    const channel = supabase
+      .channel('realtime-moments')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'moments' },
+        (payload) => {
+          console.log('[Realtime] moments change:', payload.eventType);
+          this._safeCall(() => DataService.loadMoments());
+        },
+      )
+      .subscribe((status) => {
+        this._logChannelStatus('moments', status);
+      });
+
+    this.channels.push(channel);
+  },
+
+  /* ── Subscribers ───────────────────────────────────────────────────────── */
+
+  /**
+   * Subscribe to INSERT events on the `subscribers` table.
+   * Displays a subtle notification when a new subscriber joins.
+   */
+  subscribeToSubscribers() {
+    const channel = supabase
+      .channel('realtime-subscribers')
+      .on(
+        'postgres_changes',
+        { event: 'INSERT', schema: 'public', table: 'subscribers' },
+        (payload) => {
+          console.log('[Realtime] subscribers INSERT:', payload);
+
+          // Subtle celebration toast
+          if (typeof Toast !== 'undefined') {
+            Toast.show('🎉 Someone just subscribed!', 'success');
+          }
+
+          // If there is a subscriber count element, bump it
+          const countEl = document.getElementById('subscriber-count');
+          if (countEl) {
+            const current = parseInt(countEl.textContent, 10) || 0;
+            countEl.textContent = current + 1;
+            // Quick pulse animation
+            countEl.classList.add('pulse');
+            setTimeout(() => countEl.classList.remove('pulse'), 600);
+          }
+        },
+      )
+      .subscribe((status) => {
+        this._logChannelStatus('subscribers', status);
+      });
+
+    this.channels.push(channel);
+  },
+
+  /* ── Site Stats ────────────────────────────────────────────────────────── */
+
+  /**
+   * Subscribe to UPDATE events on the `site_stats` table.
+   * Refreshes stat counter elements on the page.
+   */
+  subscribeToStats() {
+    const channel = supabase
+      .channel('realtime-site-stats')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'site_stats' },
+        (payload) => {
+          console.log('[Realtime] site_stats UPDATE:', payload);
+          const newRecord = payload.new;
+
+          if (newRecord) {
+            // Attempt to update known stat counter elements
+            this._updateStatElement('stat-members',    newRecord.total_members);
+            this._updateStatElement('stat-dives',      newRecord.total_dives);
+            this._updateStatElement('stat-activities',  newRecord.total_activities);
+            this._updateStatElement('stat-locations',   newRecord.total_locations);
+          }
+        },
+      )
+      .subscribe((status) => {
+        this._logChannelStatus('site_stats', status);
+      });
+
+    this.channels.push(channel);
+  },
+
+  /* ── Profile (current user) ────────────────────────────────────────────── */
+
+  /**
+   * Subscribe to UPDATE events on the current user's row in `profiles`.
+   * Refreshes cached profile data when changed externally.
+   */
+  subscribeToProfile() {
+    // Determine the current user id synchronously from cached Auth data
+    const userId = this._getCurrentUserId();
+    if (!userId) {
+      console.warn('[Realtime] No user id available — skipping profile subscription.');
+      return;
+    }
+
+    const channel = supabase
+      .channel('realtime-profile')
+      .on(
+        'postgres_changes',
+        {
+          event:  'UPDATE',
+          schema: 'public',
+          table:  'profiles',
+          filter: `id=eq.${userId}`,
+        },
+        (payload) => {
+          console.log('[Realtime] profile UPDATE:', payload);
+
+          const updated = payload.new;
+
+          // Sync cached profile on Auth
+          if (typeof Auth !== 'undefined' && Auth.currentProfile) {
+            Object.assign(Auth.currentProfile, updated);
+          }
+
+          // Refresh avatar UI if Profile module is loaded
+          if (typeof Profile !== 'undefined' && typeof Profile.updateAvatarUI === 'function') {
+            Profile.updateAvatarUI(updated.avatar_url || null);
+          }
+        },
+      )
+      .subscribe((status) => {
+        this._logChannelStatus('profile', status);
+      });
+
+    this.channels.push(channel);
+  },
+
+  /* ── Cleanup ───────────────────────────────────────────────────────────── */
+
+  /**
+   * Unsubscribe from all active channels.
+   * Should be called on user sign-out to free resources.
+   */
+  cleanup() {
+    this.channels.forEach((channel) => {
+      try {
+        supabase.removeChannel(channel);
+      } catch (err) {
+        console.warn('[Realtime] Error removing channel:', err);
+      }
+    });
+
+    this.channels = [];
+    console.log('[Realtime] All channels unsubscribed.');
+  },
+
+  /* ── Internal helpers ──────────────────────────────────────────────────── */
+
+  /**
+   * Safely call a callback, catching and logging any errors.
+   *
+   * @param {Function} fn
+   * @private
+   */
+  _safeCall(fn) {
+    try {
+      const result = fn();
+      // Handle promise rejections if the callback is async
+      if (result && typeof result.catch === 'function') {
+        result.catch((err) => {
+          console.error('[Realtime] Async callback error:', err);
+        });
+      }
+    } catch (err) {
+      console.error('[Realtime] Callback error:', err);
+    }
+  },
+
+  /**
+   * Log a channel's subscription status.
+   *
+   * @param {string} name   – human-readable channel name
+   * @param {string} status – Supabase channel status string
+   * @private
+   */
+  _logChannelStatus(name, status) {
+    if (status === 'SUBSCRIBED') {
+      console.log(`[Realtime] ✔ ${name} channel subscribed.`);
+    } else if (status === 'CHANNEL_ERROR') {
+      console.error(`[Realtime] ✖ ${name} channel error.`);
+    } else if (status === 'TIMED_OUT') {
+      console.warn(`[Realtime] ⏱ ${name} channel timed out.`);
+    } else {
+      console.log(`[Realtime] ${name} status: ${status}`);
+    }
+  },
+
+  /**
+   * Attempt to resolve the current user's ID from cached Auth data.
+   *
+   * @returns {string|null}
+   * @private
+   */
+  _getCurrentUserId() {
+    if (typeof Auth !== 'undefined' && Auth.currentProfile && Auth.currentProfile.id) {
+      return Auth.currentProfile.id;
+    }
+
+    // Fallback: try to read from the Supabase session synchronously
+    try {
+      const sessionData = supabase.auth.session && supabase.auth.session();
+      if (sessionData && sessionData.user) {
+        return sessionData.user.id;
+      }
+    } catch (_) {
+      // Ignored — session() may not exist in newer client versions
+    }
+
+    return null;
+  },
+
+  /**
+   * Update a stat counter element's text content.
+   *
+   * @param {string}          elementId – DOM id of the stat element
+   * @param {number|undefined} value    – new value to display
+   * @private
+   */
+  _updateStatElement(elementId, value) {
+    if (value === undefined || value === null) return;
+
+    const el = document.getElementById(elementId);
+    if (el) {
+      el.textContent = Number(value).toLocaleString();
+      // Brief highlight animation
+      el.classList.add('stat-updated');
+      setTimeout(() => el.classList.remove('stat-updated'), 800);
+    }
+  },
+};
+
+/* ── Bootstrap ─────────────────────────────────────────────────────────────── */
+
+Realtime.init();
+
+==================== js/supabase-config.js ====================
+/**
+ * Supabase Configuration
+ * ─────────────────────────────────────────────────────────────
+ * Initializes the Supabase client for the DivingClub application.
+ *
+ * Prerequisites:
+ *   The Supabase JS v2 library must be loaded via CDN before this file:
+ *   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+ *
+ * Usage:
+ *   The initialized `supabase` client is available globally and consumed
+ *   by every other module (auth.js, profiles, realtime, storage, etc.).
+ * ─────────────────────────────────────────────────────────────
+ */
+
+// ── Project Credentials ──────────────────────────────────────
+// Replace these placeholders with your actual Supabase project URL
+// and anonymous (public) API key from the Supabase dashboard.
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+// ── Client Initialization (safe – handles missing CDN) ───────
+let supabase = null;
+
+try {
+  if (window.supabase && typeof window.supabase.createClient === 'function') {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true
+      },
+      realtime: {
+        params: {
+          eventsPerSecond: 10
+        }
+      }
+    });
+  } else {
+    console.warn('[Supabase] CDN library not loaded. Running in demo mode.');
+  }
+} catch (err) {
+  console.warn('[Supabase] Client initialization failed:', err.message);
+}
+
+// ── Helper ───────────────────────────────────────────────────
+/**
+ * Returns `true` when real Supabase credentials have been supplied
+ * AND the client was successfully initialized.
+ *
+ * @returns {boolean}
+ */
+function isSupabaseConfigured() {
+  return (
+    supabase !== null &&
+    SUPABASE_URL !== 'YOUR_SUPABASE_URL' &&
+    SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY'
+  );
+}
+
+==================== IMAGE FILES ====================
+
+Name                   Length
+----                   ------
+blog_1.jpg             970096
+blog_2.jpg             835024
+blog_3.jpg             997939
+diving_activity_1.jpg 1105076
+diving_activity_2.jpg  978463
+diving_activity_3.jpg  811677
+hero_background.jpg   1017913
+hero_card.jpg         1145485
+moment_1.jpg          1081960
+moment_2.jpg           692248
+moment_3.jpg           921450
+newsletter_bg.jpg      872419
+
+
+
